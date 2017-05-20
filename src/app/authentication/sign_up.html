@@ -1,0 +1,40 @@
+<div ng-controller="AuthController as auth">
+  <form ng-submit="auth.registerUser()" ng-init="registrationForm = {}">
+    <p>
+      <label for="first-name">First name</label>
+      <input type="text" name="first_name" id="first-name" ng-model="registrationForm.first_name">
+    </p>
+
+    <p>
+      <label for="last-name">Last name</label>
+      <input type="text" name="last_name" id="last-name" ng-model="registrationForm.last_name">
+    </p>
+
+    <p>
+      <label for="date_of_birth">Date of birth</label>
+      <input type="date" name="date_of_birth" id="date_of_birth" ng-model="registrationForm.date_of_birth">
+    </p>
+
+    <p>
+      <label for="user-name">Username</label>
+      <input type="text" name="user_name" id="user-name" ng-model="registrationForm.user_name">
+    </p>
+
+    <p>
+      <label for="email">Email</label>
+      <input type="email" name="email" id="email" ng-model="registrationForm.email">
+    </p>
+
+    <p>
+      <label for="password">Password</label>
+      <input type="password" name="password" id="password" ng-model="registrationForm.password">
+    </p>
+
+    <p>
+      <label for="password-confirmation">Password confirmation</label>
+      <input type="password" name="password_confirmation" id="password-confirmation" ng-model="registrationForm.password_confirmation">
+    </p>
+
+    <button type="Submit">Register</button>
+  </form>
+</div>
