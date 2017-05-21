@@ -14,9 +14,6 @@
           apiUrl: 'http://localhost:3002',
           signOutUrl: '/gamemaker_auth/sign_out',
           emailSignInPath: '/gamemaker_auth/sign_in',
-          emailRegistrationPath: '/gamemaker_auth',
-          accountUpdatePath: '/gamemaker_auth',
-          accountDeletePath: '/gamemaker_auth',
           passwordResetPath: '/gamemaker_auth/password',
           passwordUpdatePath: '/gamemaker_auth/password',
           tokenValidationPath: '/gamemaker_auth/validate_token'
