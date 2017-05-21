@@ -7,6 +7,7 @@ function AuthController($scope, $auth, $location, $log, toastr) {
 
   vm.registerUser = function () {
     $auth.submitRegistration($scope.registrationForm)
+
     .then(function () {
       toastr.success('You have successfully registered.');
     }).catch(function (response) {
@@ -16,8 +17,23 @@ function AuthController($scope, $auth, $location, $log, toastr) {
 
   vm.loginUser = function () {
     $auth.submitLogin($scope.loginForm)
+
     .then(function () {
-      toastr.success('You have successfully logged in.');
+      toastr.success('You have successfully logged in as a user.');
+    }).catch(function (response) {
+      $log.log(response);
+      toastr.error('Wrong email or password.', 'ERROR!');
+    });
+  };
+
+  vm.loginGameMaker = function () {
+    $auth.submitLogin($scope.loginForm,
+      {
+        config: 'gameMaker'
+      })
+
+    .then(function () {
+      toastr.success('You have successfully logged in as a game maker.');
     }).catch(function (response) {
       $log.log(response);
       toastr.error('Wrong email or password.', 'ERROR!');

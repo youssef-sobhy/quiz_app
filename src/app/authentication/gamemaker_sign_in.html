@@ -1,0 +1,15 @@
+<div class="login-form" ng-controller="AuthController as auth">
+  <form ng-submit="auth.loginGameMaker()" ng-init="loginForm = {}">
+    <p>
+      <label for="email">Email</label>
+      <input type="email" name="email" id="email" ng-model="loginForm.email">
+    </p>
+
+    <p>
+      <label for="password">Password</label>
+      <input type="password" name="password" id="password" ng-model="loginForm.password">
+    </p>
+
+    <button type="submit">Login</button>
+  </form>
+</div>
