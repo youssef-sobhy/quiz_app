@@ -1,0 +1,6 @@
+<div ng-controller="UserController as user">
+	<form ng-submit="user.uploadPicture()">
+		<input type="file" name="picture" ngf-select ng-model='picture'>
+		<button type="submit">Submit</button>
+	</form>
+</div>

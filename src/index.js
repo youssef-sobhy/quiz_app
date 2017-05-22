@@ -1,8 +1,10 @@
+
+
 (function () {
   'use strict';
 
   angular
-    .module('quizApp', ['ng-token-auth', 'ngRoute', 'toastr'])
+    .module('quizApp', ['ng-token-auth', 'ngRoute', 'toastr', 'ngFileUpload'])
     .config(function ($authProvider, $routeProvider, $locationProvider) {
       $authProvider.configure([
       {
@@ -35,7 +37,12 @@
       })
       .when('/game_maker', {
         templateUrl: 'app/authentication/gamemaker_sign_in.html'
+      })
+      .when('/user_profile', {
+        templateUrl: 'app/user_profile/user_profile.html',
+        controller: 'UserController'
       });
+
 
       $locationProvider.html5Mode(true);
     });
