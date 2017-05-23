@@ -1,0 +1,10 @@
+<div class="topics" ng-controller="topicsController as vm">
+  <div class="topic" ng-repeat="topic in vm.topics">
+    <h1> 
+      <a ng-href="topics/{{ topic.id }}">
+        <img src="{{ topic.logo }}" alt="{{ topic.title }}" /> <span>{{ topic.title }}</span>
+      </a>
+    </h1>
+    <p>{{ topic.description }}</p>
+  </div>
+</div>
