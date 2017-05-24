@@ -38,5 +38,9 @@ angular
     .when('/topics/:id', {
       templateUrl: 'app/topics/topic.html'
     });
+
+    .when('/topics/:id/quizzes/:id'{
+      templateUrl: 'app/quizzes/quiz.html'
+    });
     $locationProvider.html5Mode(true);
   });
