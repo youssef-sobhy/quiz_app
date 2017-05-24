@@ -12,7 +12,7 @@
 
     <p>
       <label for="date_of_birth">Date of birth</label>
-      <input type="date" name="date_of_birth" id="date_of_birth" ng-model="registrationForm.date_of_birth">
+      <input type="date" name="date_of_birth" id="date_of_birth" ui-date="{dateFormat: 'yy-mm-dd'}" ui-date-format="yy-mm-dd" ng-model-options="{timezone:'UTC'}" ng-model="registrationForm.date_of_birth">
     </p>
 
     <p>

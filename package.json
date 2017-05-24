@@ -69,5 +69,8 @@
     "extends": [
       "xo-space"
     ]
+  },
+  "dependencies": {
+    "@uirouter/angularjs": "^1.0.3"
   }
 }
