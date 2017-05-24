@@ -1,19 +1,17 @@
 angular
-  .module('quizApp')
-  .factory('topicsService', function($http, ENV_VARS){
-    var base_url = ENV_VARS.base_url + "topics";
+.module('quizApp')
+.factory('TopicsService', function ($http, ENV_VARS) {
+    var baseUrl = ENV_VARS.baseUrl + 'topics';
 
     return {
-        getTopics: function(){
-            console.log('I am in getTopics function');
-            return $http.get(base_url + ".json");
+        getTopics: function () {
+            return $http.get(baseUrl + '.json');
         },
-        getTopic: function(id){
-          console.log(id);
-            return $http.get(base_url + "/" + id + ".json");
+        getTopic: function (id) {
+            return $http.get(baseUrl + '/' + id + '.json');
         },
-        postTopic: function(data){
-            return $http.post(base_url, data)
+        postTopic: function (data) {
+            return $http.post(baseUrl + '.json', data);
         }
-    }
+    };
 });
