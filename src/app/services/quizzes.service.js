@@ -1,17 +1,17 @@
 angular
 	.module('quizApp')
 	.factory('quizzesService', function($http, ENV_VARS){
-		var base_url = ENV_VARS.base_url + "topics/" + id + "/quizzes";
+		var base_url = ENV_VARS.base_url + "topics/";
 
 		return{
-			getQuizzes: function(){
-				return $http.get(base_url + ".json");
+			getQuizzes: function(topicId){
+				return $http.get(base_url + topicId + "/quizzes.json");
 			}
-			getQuiz: function(id){
-				return $http.get(base_url + "/" + id + ".json");
+			getQuiz: function(topicId, id){
+				return $http.get(base_url + topicId + "/quizzes/" + id + ".json");
 			},
-			postQuiz: function(data){
-				return $http.post(base_url, data)
+			postQuiz: function(topicId, data){
+				return $http.post(base_url + topicId + "/quizzes.json", data)
 			}
 		}
 	});
