@@ -6,7 +6,7 @@ angular
 		return{
 			getQuizzes: function(topicId){
 				return $http.get(base_url + topicId + "/quizzes.json");
-			}
+			},
 			getQuiz: function(topicId, id){
 				return $http.get(base_url + topicId + "/quizzes/" + id + ".json");
 			},

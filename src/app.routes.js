@@ -1,6 +1,6 @@
 angular
   .module('quizApp')
-  .config(function ($authProvider, $routeProvider, $locationProvider, ENV_VARS) {
+  .config(function ($authProvider, $stateProvider, $locationProvider, ENV_VARS) {
     $authProvider.configure([
       {
         default: {
@@ -17,30 +17,31 @@ angular
         }
       }
     ]);
-
-    $routeProvider
-    .when('/', {
-      templateUrl: 'app/authentication/user_sign_in.html',
-      controller: 'AuthController',
-      controllerAs: 'vm'
-    })
-    .when('/sign_up', {
-      templateUrl: 'app/authentication/user_sign_up.html',
-      controller: 'AuthController',
-      controllerAs: 'vm'
-    })
-    .when('/game_maker', {
-      templateUrl: 'app/authentication/gamemaker_sign_in.html'
-    })
-    .when('/topics', {
-      templateUrl: 'app/topics/topics.html'
-    })
-    .when('/topics/:id', {
-      templateUrl: 'app/topics/topic.html'
-    });
-
-    .when('/topics/:id/quizzes/:id'{
-      templateUrl: 'app/quizzes/quiz.html'
-    });
+    
+    $stateProvider
+      .state('sign in', {
+        url: '/',
+        templateUrl: 'app/authentication/user_sign_in.html'
+      })
+      .state('sign up', {
+        url: '/sign_up',
+        templateUrl: 'app/authentication/user_sign_up.html'
+      })
+      .state('gm sign in', {
+        url: '/game_maker',
+        templateUrl: 'app/authentication/gamemaker_sign_in.html'
+      })
+      .state('topics', {
+        url: '/topics',
+        templateUrl: 'app/topics/topics.html'
+      })
+      .state('topic', {
+        url: '/topics/{id}',
+        templateUrl: 'app/topics/topic.html'
+      })
+      .state('quiz', {
+        url:'/topics/{topic_id}/quizzes/{id}',
+        templateUrl: 'app/quizzes/quiz.html'
+      });
     $locationProvider.html5Mode(true);
   });

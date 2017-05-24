@@ -2,12 +2,12 @@ angular
 .module('quizApp')
 .controller('topicController', topicController);
 
-function topicController($scope, $http, toastr, topicsService, $routeParams) {
+function topicController($scope, $http, toastr, topicsService, $stateParams) {
   var vm = this;
   vm.topic = {};
-  console.log($routeParams);
+  console.log($stateParams);
 
-  topicsService.getTopic($routeParams["id"])
+  topicsService.getTopic($stateParams["id"])
     .then(function(success){
       vm.topic = success.data;
       console.log(vm.topic);
