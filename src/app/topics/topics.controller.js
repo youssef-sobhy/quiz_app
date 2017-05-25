@@ -2,10 +2,10 @@ angular
 .module('quizApp')
 .controller('TopicsController', topicsController);
 
-function topicsController($scope, $http, toastr, topicsService) {
+function topicsController($scope, toastr, TopicsService) {
   var vm = this;
   vm.topics = [];
-  topicsService.getTopics()
+  TopicsService.getTopics()
     .then(function (success) {
       vm.topics = success.data;
     }, function (error) {
@@ -20,11 +20,12 @@ function topicsController($scope, $http, toastr, topicsService) {
         logo: vm.logo
       }
     };
-    topicsService.postTopic(data)
+    TopicsService.postTopic(data)
       .then(function (success) {
         vm.topics.push(success.data);
       }, function (error) {
         toastr.error('Failed to add topic you entered', 'ERROR!');
       });
   };
+
 }
