@@ -12,6 +12,13 @@ angular
 			},
 			postQuiz: function(topicId, data){
 				return $http.post(base_url + topicId + "/quizzes.json", data)
+			},
+			deleteQuiz: function(topicId, id){
+				return $http.delete(base_url + topicId + "/quizzes/" + id + ".json");
+			},
+			updateQuiz: function(topicId, id, data){
+				return $http.update(base_url + topicId + "/quizzes/" + id + ".json", data)
 			}
+
 		}
 	});
