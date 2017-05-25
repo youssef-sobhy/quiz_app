@@ -2,7 +2,7 @@ angular
 .module('quizApp')
 .controller('TopicController', topicController);
 
-function topicController($scope, $stateParams, toastr, TopicsService) {
+function topicController($scope, $stateParams, $state, toastr, TopicsService) {
   var vm = this;
   vm.topic = {};
   vm.editForm = true;
@@ -39,10 +39,10 @@ function topicController($scope, $stateParams, toastr, TopicsService) {
   };
 
   vm.removeTopic = function () {
-    console.log('test');
     TopicsService.deleteTopic($stateParams.id)
       .then(function (success) {
         vm.topic = success.data;
+        $state.go('topics');
       }, function (error) {
         toastr.error('Failed to delete this topic', 'ERROR!');
       });  

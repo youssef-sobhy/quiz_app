@@ -23,6 +23,9 @@ function topicsController($scope, toastr, TopicsService) {
     TopicsService.postTopic(data)
       .then(function (success) {
         vm.topics.push(success.data);
+        vm.title = "";
+        vm.description = "";
+        vm.logo = "";
       }, function (error) {
         toastr.error('Failed to add topic you entered', 'ERROR!');
       });

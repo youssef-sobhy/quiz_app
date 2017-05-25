@@ -17,7 +17,7 @@ angular
         return $http.post(baseUrl + '.json', data);
       },
       deleteTopic: function (id) {
-        return $http.delete(baseUrl + '/' + id);
+        return $http.delete(baseUrl + '/' + id + '.json');
       }
     };
   });

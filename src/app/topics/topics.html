@@ -11,17 +11,17 @@
   <form ng-submit="vm.addTopic()">
     <div>
       <label for="title">Title</label>
-      <input type="text" name="title" id="title" ng-model="title" required />
+      <input type="text" name="title" id="title" ng-model="vm.title" required />
     </div>
     <br>  
     <div>
       <label for="description">Description</label>
-      <textarea id="description" name="description" ng-model="description" required></textarea>
+      <textarea id="description" name="description" ng-model="vm.description" required></textarea>
     </div>
     <br>  
     <div>
       <label for="logo">Logo</label>
-      <input type="file" name="logo" id="logo" ng-model="logo" />
+      <input type="file" name="logo" id="logo" ng-model="vm.logo" />
     </div>
     <br>
     <div>

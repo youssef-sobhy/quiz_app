@@ -2,7 +2,8 @@
   <h1> <img src="{{ vm.topic.logo }}" alt="{{ vm.topic.title }}" /> <span>{{ vm.topic.title }}</span></h1>
   <p>{{ vm.topic.description }}</p>
   
-  <button type="submit" ng-submit="removeTopic()">Delete</button>
+  <button ng-click="vm.removeTopic()">Delete</button>
+
   <button ng-click="vm.showEditForm()">Edit</button>
 
   <form ng-submit="vm.updateTopic()" ng-hide="vm.editForm">
