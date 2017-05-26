@@ -17,17 +17,17 @@ angular
         }
       }
     ]);
-    
+
     $stateProvider
-      .state('sign in', {
+      .state('sign_in', {
         url: '/',
         templateUrl: 'app/authentication/user_sign_in.html'
       })
-      .state('sign up', {
+      .state('sign_up', {
         url: '/sign_up',
         templateUrl: 'app/authentication/user_sign_up.html'
       })
-      .state('gm sign in', {
+      .state('gm_sign_in', {
         url: '/game_maker',
         templateUrl: 'app/authentication/gamemaker_sign_in.html'
       })
