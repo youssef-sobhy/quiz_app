@@ -5,7 +5,16 @@ angular
 	function quizController($scope, $state, toastr, quizzesService, $stateParams){
 		var vm = this;
 		vm.quiz = {};
-console.log("i am in the quiz controller")
+		vm.editQuiz = true;
+
+		vm.showEditQuiz = function () {
+    if (vm.editQuiz === true) {
+      vm.editQuiz = false;
+    } else {
+      vm.editQuiz = true;
+    }
+  };
+
 		quizzesService.getQuiz($stateParams["topic_id"], $stateParams["id"])
 		.then(function(success){
 			vm.quiz = success.data;
@@ -21,4 +30,25 @@ console.log("i am in the quiz controller")
 				toastr.error('Something went Wrong', "ERROR!");
 			});
 		}
+
+		
+
+		vm.updateQuiz = function () {
+    		var data = {
+     		  quiz: {
+       			title: vm.quiz.title,
+        		passing_score: vm.quiz.passing_score
+     		}
+          };
+      
+        quizzesService.editQuiz($stateParams["topic_id"], $stateParams["id"], data)
+        .then(function(success){
+        	toastr.success('Your Quiz has been successfully updated!');
+        	vm.quiz = success.data;
+				}, function(error){
+					toastr.error('Something went Wrong!');
+				});
+      };
 	}
+
+	

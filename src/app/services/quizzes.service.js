@@ -16,8 +16,8 @@ angular
 			deleteQuiz: function(topicId, id){
 				return $http.delete(base_url + topicId + "/quizzes/" + id + ".json");
 			},
-			updateQuiz: function(topicId, id, data){
-				return $http.update(base_url + topicId + "/quizzes/" + id + ".json", data)
+			editQuiz: function(topicId, id, data){
+				return $http.patch(base_url + topicId + "/quizzes/" + id + ".json", data)
 			}
 
 		}
