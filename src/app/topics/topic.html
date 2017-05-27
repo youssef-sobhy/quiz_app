@@ -5,7 +5,9 @@
 
 <div class="quizzes" ng-controller="quizzesController as vm">
   <div class="quiz" ng-repeat="quiz in vm.quizzes">
-    <h1>{{ quiz.title }}</h1>
+    <h1><a ui_sref="topic.quiz({quizId: quiz.id, topicId: quiz.topic_id})">{{ quiz.title }}</a></h1>
     <p>{{ quiz.passing_score }}</p>
   </div>
+
+  <ui-view></ui-view>
 </div>

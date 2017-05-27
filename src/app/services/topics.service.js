@@ -9,7 +9,6 @@ angular
             return $http.get(base_url + ".json");
         },
         getTopic: function(id){
-          console.log(id);
             return $http.get(base_url + "/" + id + ".json");
         },
         postTopic: function(data){

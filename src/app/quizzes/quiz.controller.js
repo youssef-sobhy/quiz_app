@@ -5,8 +5,8 @@ angular
 	function quizController($scope, $state, toastr, quizzesService, $stateParams){
 		var vm = this;
 		vm.quiz = {};
-console.log("i am in the quiz controller")
-		quizzesService.getQuiz($stateParams["topic_id"], $stateParams["id"])
+
+		quizzesService.getQuiz($stateParams.topicId, $stateParams.quizId)
 		.then(function(success){
 			vm.quiz = success.data;
 		}, function(error){
@@ -14,9 +14,9 @@ console.log("i am in the quiz controller")
 		})
 
 		vm.delete = function() {
-			quizzesService.deleteQuiz($stateParams["topic_id"], $stateParams["id"])
+			quizzesService.deleteQuiz($stateParams.topicId, $stateParams.quizId)
 			.then(function(success){
-				$state.go("topic", { "id": $stateParams["topic_id"]});
+				$state.go("topic", { "topicId": $stateParams.topicId});
 			}, function(error){
 				toastr.error('Something went Wrong', "ERROR!");
 			});

@@ -6,7 +6,7 @@ angular
 		var vm = this;
 		vm.quiz = [];
 
-		quizzesService.getQuizzes($stateParams["id"])
+		quizzesService.getQuizzes($stateParams.topicId)
 		.then(function(success){
 			vm.quizzes = success.data;
 		}, function(error){
