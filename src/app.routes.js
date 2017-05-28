@@ -17,7 +17,7 @@ angular
         }
       }
     ]);
-
+    
     $stateProvider
       .state('sign in', {
         url: '/',
@@ -38,7 +38,10 @@ angular
       .state('topic', {
         url: '/topics/{id}',
         templateUrl: 'app/topics/topic.html'
+      })
+      .state('quiz', {
+        url:'/topics/{topic_id}/quizzes/{id}',
+        templateUrl: 'app/quizzes/quiz.html'
       });
-
     $locationProvider.html5Mode(true);
   });
