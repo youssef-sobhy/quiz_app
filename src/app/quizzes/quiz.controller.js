@@ -43,6 +43,7 @@ angular
       
         quizzesService.editQuiz($stateParams["topic_id"], $stateParams["id"], data)
         .then(function(success){
+        	console.log("success.data")
         	toastr.success('Your Quiz has been successfully updated!');
         	vm.quiz = success.data;
 				}, function(error){

@@ -4,7 +4,7 @@ angular
 
 	function quizzesController($scope, $http, toastr, quizzesService, $stateParams) {
 		var vm = this;
-		vm.quiz = [];
+		vm.quizzes = [];
 
 		quizzesService.getQuizzes($stateParams["id"])
 		.then(function(success){
@@ -12,4 +12,24 @@ angular
 		}, function(error){
 			toastr.error('Something went Wrong', 'ERROR!');
 		});
-	}
+
+	vm.addQuiz = function (){
+		var data = {
+			quiz:{
+				title: vm.quiz.title,
+				passing_score: vm.quiz.passing_score
+			}
+		};
+
+		quizzesService.postQuiz(data)
+		.then(function(success){
+			vm.quizzes.push(success.data);
+			vm.title = "";
+			vm.passing_score = "";
+		}, function(error){
+			toastr.error('Something went Wrong')
+		});
+
+	};
+
+}
