@@ -21,7 +21,7 @@ angular
 			}
 		};
 
-		quizzesService.postQuiz(data)
+		quizzesService.postQuiz($stateParams["id"], data)
 		.then(function(success){
 			vm.quizzes.push(success.data);
 			vm.title = "";

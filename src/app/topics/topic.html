@@ -30,6 +30,8 @@
 
 <div class="quizzes" ng-controller="quizzesController as vm">
   <div class="quiz" ng-repeat="quiz in vm.quizzes">
+    <a ui-sref="quiz({id: quiz.id, topic_id: quiz.topic_id})">
+
     <h1>{{ quiz.title }}</h1>
     <p>{{ quiz.passing_score }}</p>
   </div>
@@ -50,4 +52,4 @@
       <button type="submit">Add Quiz</button>
     </div>
   </form>
- </div>
+</div>
