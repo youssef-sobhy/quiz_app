@@ -1,8 +1,8 @@
 angular
 .module('quizApp')
-.controller('TopicController', topicController);
+.controller('TopicController', TopicController);
 
-function topicController($scope, $stateParams, $state, toastr, TopicsService) {
+function TopicController($scope, $stateParams, $state, toastr, TopicsService) {
   var vm = this;
   vm.topic = {};
   vm.editForm = true;
