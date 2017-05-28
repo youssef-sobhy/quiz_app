@@ -4,11 +4,11 @@ angular
     $authProvider.configure([
       {
         default: {
-          apiUrl: ENV_VARS.base_url
+          apiUrl: ENV_VARS.baseUrl
         }
       }, {
         gameMaker: {
-          apiUrl: ENV_VARS.base_url,
+          apiUrl: ENV_VARS.baseUrl,
           signOutUrl: '/gamemaker_auth/sign_out',
           emailSignInPath: '/gamemaker_auth/sign_in',
           passwordResetPath: '/gamemaker_auth/password',
