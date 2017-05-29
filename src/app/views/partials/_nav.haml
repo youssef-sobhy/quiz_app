@@ -1,0 +1,13 @@
+/ list
+%ul.nav
+  %li.hidden-folded.padder.m-t.m-b-sm.text-muted.text-xs
+    %span{:translate => "aside.nav.HEADER"} Navigation
+  %li{"ui-sref-active" => "active"}
+    %a{"ui-sref" => "dashboard.home"}
+      %i.icon-speedometer
+      %span.font-bold{:translate => "aside.nav.DASHBOARD"} Dashboard
+  %li{"ui-sref-active" => "active"}
+    %a{"ui-sref" => "dashboard.call-log"}
+      -#%b.badge.bg-primary.pull-right 10
+      %i.icon-basket
+      %span.font-bold{:translate => "aside.nav.ORDERS"} Orders

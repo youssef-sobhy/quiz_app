@@ -1,0 +1,72 @@
+/ navbar header
+.navbar-header.bg-primary
+  %button.pull-right.visible-xs.dk{"data-target" => ".navbar-collapse", "ui-toggle-class" => "show"}
+    %i.glyphicon.glyphicon-cog
+  %button.pull-right.visible-xs{"data-target" => ".app-aside", "ui-scroll-to" => "app", "ui-toggle-class" => "off-screen"}
+    %i.glyphicon.glyphicon-align-justify
+  / brand
+  %a.navbar-brand.text-lt{:href => "#/"}
+    %img{:alt => ".", :src => "/assets/images/small-logo.png"}
+    %span.hidden-folded.m-l-xs {{app.name}}
+  / / brand
+/ / navbar header
+/ navbar collapse
+.collapse.pos-rlt.navbar-collapse.box-shadow.bg-gray
+  <!-- buttons -->
+  .nav.navbar-nav.hidden-xs
+    %a.btn.navbar-btn.no-shadow{href: "", "uib-tooltip" => "Help Docs", "tooltip-placement" => "bottom"}
+      %i.icon-question
+      %span.visible-xs-inline Help Docs
+    %a.btn.navbar-btn.no-shadow{href: "", "uib-tooltip" => "Get Support", "tooltip-placement" => "bottom"}
+      %i.icon-support
+      %span.visible-xs-inline Get Support
+  / nabar right
+  %ul.nav.navbar-nav.navbar-right
+    %li.dropdown{:"uib-dropdown" => ""}
+      %a.dropdown-toggle{"uib-dropdown-toggle" => "", :href => "", "uib-tooltip": "Notifications", "tooltip-placement" => "bottom"}
+        %i.icon-bell.fa-fw
+        %span.visible-xs-inline Notifications
+        %span.badge.badge-sm.up.bg-primary.pull-right-xs{ "ng-if":"current_user.unread_notifications_count > 0" }
+          {{ current_user.unread_notifications_count }}
+      / dropdown
+      #notifications-dropdown.dropdown-menu.w-xl
+        .header-dropdown-panel.panel.panel-default
+          .panel-heading
+            %span.v-t-top.m-l-xs Notifications
+            %span.pull-right 
+              %a{ "ng-click":"markNotificationsRead" }
+                Mark All as Read
+          .list-group{ "ng-infinite-scroll-pagination":"", "ng-change":"getNotifications()", "ng-model": "notificationsPaginationInfo.page", "total-items": "notificationsPaginationInfo.totalItems", "reached-end-val":"notificationsPaginationInfo.reachedEnd", "per-page": "10", "infinite": "false", "stopOnPage": "2" }
+            .list-group-item.text-center{ "ng-if":"current_user.notifications.length == 0" }
+              You don't have any notifications yet
+            %a.list-group-item{ "ui-sref":"dashboard.calls({callId: notification.trackable_id})", "ng-repeat": "notification in current_user.notifications", "ng-class": "{ 'bg-light lt text-bold': !notification.seen }" }
+              .call-thumb.btn.btn-rounded.btn-icon.pull-left.m-r{ "ng-class":"{'call.agent.recorded': 'btn-warning', 'call.agent.missed': 'btn-danger' }[notification.key]" }
+                %i{ "ng-class":"{'call.agent.recorded': 'fa fa-microphone', 'call.agent.missed': 'ci ci-missed-call' }[notification.key]" }
+              %span.clear.block.m-b-none
+                %span
+                  {{ {'call.agent.missed': 'You missed a call', 'call.agent.recorded': 'You have a recorded message'}[notification.key] }}
+                %br
+                %small.text-muted {{ notification.created_at | HumanizeTime }}
+          .panel-footer.text-sm
+            %a{ "ui-sref": "dashboard.notifications" }
+              See all notifications
+
+
+    %li.dropdown{:"uib-dropdown" => ""}
+      %a.dropdown-toggle.clear{"uib-dropdown-toggle" => "", :href => ""}
+        %span.thumb-sm.avatar.pull-right.m-t-n-sm.m-b-n-sm.m-l-sm
+          %img{:alt => "...", src: "/assets/images/blue_moon.jpg"}
+        %span.hidden-sm.hidden-md {{ current_user.name }}
+        %b.caret
+      / dropdown
+      %ul.dropdown-menu
+        %li
+          %a{"ui-sref": "dashboard.settings"}
+            %span Account Settings
+        %li.divider
+        %li
+          %a{"ui-sref" => "logout"}
+            %span Logout
+      / / dropdown
+  / / navbar right
+/ / navbar collapse

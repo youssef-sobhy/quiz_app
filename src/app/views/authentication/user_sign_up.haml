@@ -1,0 +1,24 @@
+%div{"ng-controller" => "AuthController as auth"}
+  %form{"ng-init" => "registrationForm = {}", "ng-submit" => "auth.registerUser()"}
+    %p
+      %label{:for => "first-name"} First name
+      %input#first-name{:name => "first_name", "ng-model" => "registrationForm.first_name", :type => "text"}
+    %p
+      %label{:for => "last-name"} Last name
+      %input#last-name{:name => "last_name", "ng-model" => "registrationForm.last_name", :type => "text"}
+    %p
+      %label{:for => "date_of_birth"} Date of birth
+      %input#date_of_birth{:name => "date_of_birth", "ng-model" => "registrationForm.date_of_birth", "ng-model-options" => "{timezone:'UTC'}", :type => "date", "ui-date" => "{dateFormat: 'yy-mm-dd'}", "ui-date-format" => "yy-mm-dd"}
+    %p
+      %label{:for => "user-name"} Username
+      %input#user-name{:name => "user_name", "ng-model" => "registrationForm.user_name", :type => "text"}
+    %p
+      %label{:for => "email"} Email
+      %input#email{:name => "email", "ng-model" => "registrationForm.email", :type => "email"}
+    %p
+      %label{:for => "password"} Password
+      %input#password{:name => "password", "ng-model" => "registrationForm.password", :type => "password"}
+    %p
+      %label{:for => "password-confirmation"} Password confirmation
+      %input#password-confirmation{:name => "password_confirmation", "ng-model" => "registrationForm.password_confirmation", :type => "password"}
+    %button{:type => "Submit"} Register

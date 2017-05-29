@@ -1,0 +1,26 @@
+@include '../angulr/app.mixins.less';
+
+@include 'makinah.pages.less';
+@include 'makinah.utilities.less';
+
+.nav {
+  > li {
+    > a {
+      &:hover,
+      &:focus {
+        background-color: @brand-light;
+      }
+    }
+  }
+
+  .open{
+    > a{
+      &,
+      &:hover,
+      &:focus{
+        background-color: @brand-light;
+      }
+    }
+  }
+}
+

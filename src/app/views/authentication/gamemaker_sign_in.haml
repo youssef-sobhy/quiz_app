@@ -1,0 +1,9 @@
+.login-form{"ng-controller" => "AuthController as auth"}
+  %form{"ng-init" => "loginForm = {}", "ng-submit" => "auth.loginGameMaker()"}
+    %p
+      %label{:for => "email"} Email
+      %input#email{:name => "email", "ng-model" => "loginForm.email", :type => "email"}
+    %p
+      %label{:for => "password"} Password
+      %input#password{:name => "password", "ng-model" => "loginForm.password", :type => "password"}
+    %button{:type => "submit"} Login

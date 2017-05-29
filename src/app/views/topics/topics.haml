@@ -1,0 +1,22 @@
+.topics{"ng-controller" => "TopicsController as vm"}
+  .topic{"ng-repeat" => "topic in vm.topics"}
+    %h1
+      %a{"ui-sref" => "topic({topicId: topic.id})"}
+        %img{:alt => "{{ topic.title }}", :src => "{{ topic.logo }}"}
+        %span {{ topic.title }}
+    %p {{ topic.description }}
+  %form{"ng-submit" => "vm.addTopic()"}
+    %div
+      %label{:for => "title"} Title
+      %input#title{:name => "title", "ng-model" => "vm.title", :required => "", :type => "text"}
+    %br
+    %div
+      %label{:for => "description"} Description
+      %textarea#description{:name => "description", "ng-model" => "vm.description", :required => ""}
+    %br
+    %div
+      %label{:for => "logo"} Logo
+      %input#logo{:name => "logo", "ng-model" => "vm.logo", :type => "file"}
+    %br
+    %div
+      %button{:type => "submit"} Submit

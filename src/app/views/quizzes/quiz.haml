@@ -1,0 +1,16 @@
+.quiz{"ng-controller" => "quizController as vm"}
+  %h1 {{ vm.quiz.title }}
+  %p {{ vm.quiz.passing_score }}
+  %button{"ng-click" => "vm.delete()", :type => "button"} Delete
+  %button{"ng-click" => "vm.showEditQuiz()"} Edit
+  %form{"ng-hide" => "vm.editQuiz", "ng-submit" => "vm.updateQuiz()"}
+    %div
+      %label{:for => "title"} Title
+      %input#title{:name => "title", "ng-model" => "vm.quiz.title", :required => "", :type => "text"}
+    %br
+    %div
+      %label{:for => "passing_score"} Passing Score
+      %input{:max => "100", :min => "1", :name => "passing_score", "ng-model" => "vm.quiz.passing_score", :type => "number"}
+    %div
+      %button{:type => "submit"} Update
+  %ui-view

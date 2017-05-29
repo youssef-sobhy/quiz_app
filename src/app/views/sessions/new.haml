@@ -1,0 +1,32 @@
+#login
+  %toaster-container
+  %div{"ui-butterbar" => "", style: "margin-top: -50px; margin-bottom: 47px;"}
+  .container.w-xxl.w-auto-xs
+    %a.navbar-brand.block.m-t{:href => ""}
+      %img{ src: "/assets/images/logo-no-alpha.png", style: "max-height: initial;" }
+    .m-b-lg
+      .wrapper.text-center
+        %strong Welcome back!
+      %form.form-validation{:name => "form"}
+        .text-danger.wrapper.text-center{"ng-show" => "authError"}
+          {{authError}}
+        .list-group.list-group-sm
+          .list-group-item
+            %input.form-control.no-border{"ng-model" => "login_user.email", :placeholder => "Email", :required => "", :type => "email"}
+          .list-group-item
+            %input.form-control.no-border{"ng-model" => "login_user.password", :placeholder => "Password", :required => "", :type => "password"}
+        .form-group
+          .checkbox
+            %label.i-checks
+              %input.form-control{"ng-model" => "login_user.remember", type: "checkbox"}
+              %i
+              Remember me
+        %button.btn.btn-lg.btn-success.btn-block{"ng-click" => "login()", "ng-disabled" => "form.$invalid", :type => "submit"} Log in
+        .text-center.m-t.m-b
+          %a{"ui-sref" => "access.forgotpwd"} Forgot password?
+        .line.line-dashed
+        %p.text-center
+          %small 
+            Do not have an account?
+            %a.primary{href: "#", target: "_blank"} Sign up
+    .text-center{"ng-include" => "'app/views/partials/_page_footer.html'"}

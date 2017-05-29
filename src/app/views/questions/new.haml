@@ -1,0 +1,10 @@
+%div{"ng-controller" => "QuestionsController as vm"}
+  %form{:name => "vm.questionForm", "ng-submit" => "vm.addQuestion()"}
+    %p
+      %label{:for => "question"} Question
+      %input#question{:name => "question", "ng-model" => "vm.question", :required => "", :type => "text"}
+    %div{"ng-init" => "i = $index + 1", "ng-repeat" => "choice in vm.choices"}
+      %label{:for => "choice{{ i }}"} Choice {{ i }}
+      %input{:id => "choice{{ i }}", :name => "choice{{ i }}", "ng-model" => "choice.choice", :type => "text"}
+      %input{:name => "choice", "ng-change" => "vm.updateCheckBox($index)", "ng-model" => "choice.right_choice", :type => "checkbox"}
+    %button{:type => "submit"} Submit

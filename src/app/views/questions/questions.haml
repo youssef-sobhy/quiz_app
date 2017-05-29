@@ -1,0 +1,12 @@
+.questions{"ng-controller" => "QuestionsController as vm"}
+  .question{"ng-init" => "choices = question.choices; index = $index + 1", "ng-repeat" => "question in vm.questions"}
+    %p{"ng-dblclick" => "editing = true", "ng-hide" => "editing"} {{ question.question }}
+    %form{"ng-submit" => "vm.editQuestion(question); editing = false"}
+      %input{:name => "question", "ng-model" => "question.question", "ng-show" => "editing", :type => "text"}
+    %button{"ng-click" => "vm.deleteQuestion(question)", :type => "button"} Delete
+    %div{"ng-repeat" => "choice in choices"}
+      %input{:id => "question{{ index }}choice{{ $index }}", :name => "question{{ index }}", :type => "radio"}
+      %label{:for => "question{{ index }}choice{{ $index }}"} {{ choice.choice }}
+  %p
+    %a{"ui-sref" => "topic.quiz.questions.new"} Add a question
+  %ui-view

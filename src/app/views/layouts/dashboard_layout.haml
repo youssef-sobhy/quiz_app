@@ -1,0 +1,20 @@
+#dashboard-wrapper
+  / navbar
+  .app-header.navbar{"data-ng-include": " 'app/views/partials/_header.html' "}
+  / / navbar
+  / menu
+  .app-aside.hidden-xs.bg-primary{"data-ng-include": " 'app/views/partials/_aside.html' "}
+  / / menu
+  / content
+  .app-content{ "ng-class": "{ 'h-full': setHideFooter() }" }
+    %div{"ui-butterbar": ""}
+    .app-content-body.fade-in{"ui-view": "", "ng-class": "{ 'h-full app-content-full': app.hideFooter }"}
+  / /content
+  -#/ footer
+  -#.app-footer.wrapper.b-t.bg-light{ "ng-class": "{ 'hide': app.hideFooter }" }
+    -#%span.pull-right
+      -#Fluka {{app.version}}
+      -#%a.m-l-sm.text-muted{href: "", "ui-scroll-to": "app"}
+        -#%i.fa.fa-long-arrow-up
+    -#\&copy; 2016 Fluka.io, All rights reserved.
+  -#/ / footer
