@@ -1,8 +1,8 @@
 angular
 .module('quizApp')
-.controller('TopicController', topicController);
+.controller('TopicController', TopicController);
 
-function topicController($scope, $stateParams, $state, toastr, TopicsService) {
+function TopicController($scope, $stateParams, $state, toastr, TopicsService) {
   var vm = this;
   vm.topic = {};
   vm.editForm = true;
@@ -15,12 +15,13 @@ function topicController($scope, $stateParams, $state, toastr, TopicsService) {
     }
   };
 
-  TopicsService.getTopic($stateParams.id)
+  TopicsService.getTopic($stateParams.topicId)
     .then(function (success) {
       vm.topic = success.data;
     }, function (error) {
       toastr.error('Failed to retrieve the topic you clicked', 'ERROR!');
     });
+
   vm.updateTopic = function () {
     var data = {
       topic: {
@@ -29,7 +30,7 @@ function topicController($scope, $stateParams, $state, toastr, TopicsService) {
         logo: vm.topic.logo
       }
     };
-    TopicsService.editTopic($stateParams.id, data)
+    TopicsService.editTopic($stateParams.topicId, data)
       .then(function (success) {
         toastr.success('Topic has been updated', 'successfully');
         vm.topic = success.data;
@@ -39,14 +40,12 @@ function topicController($scope, $stateParams, $state, toastr, TopicsService) {
   };
 
   vm.removeTopic = function () {
-    TopicsService.deleteTopic($stateParams.id)
+    TopicsService.deleteTopic($stateParams.topicId)
       .then(function (success) {
         vm.topic = success.data;
         $state.go('topics');
       }, function (error) {
         toastr.error('Failed to delete this topic', 'ERROR!');
-      });  
+      });
   }
-
-
 }
