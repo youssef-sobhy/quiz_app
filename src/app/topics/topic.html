@@ -19,7 +19,7 @@
     <br>  
     <div>
       <label for="logo">Logo</label>
-      <input type="file" name="logo" id="logo" ng-model="vm.topic.logo" />
+      <input type="file" name="logo" id="logo" ngf-select ng-model="vm.topic.logo" />
     </div>
     <br>
     <div>
@@ -27,6 +27,7 @@
     </div>
   </form>
 </div>
+
 
 <div class="quizzes" ng-controller="quizzesController as vm">
   <div class="quiz" ng-repeat="quiz in vm.quizzes">

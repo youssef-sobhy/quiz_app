@@ -1,8 +1,8 @@
 angular
 .module('quizApp')
-.controller('TopicsController', topicsController);
+.controller('TopicsController', TopicsController);
 
-function topicsController($scope, toastr, TopicsService) {
+function TopicsController($scope, toastr, TopicsService, Upload, ENV_VARS) {
   var vm = this;
   vm.topics = [];
   TopicsService.getTopics()
@@ -12,12 +12,24 @@ function topicsController($scope, toastr, TopicsService) {
       toastr.error('Failed to retrieve topics', 'ERROR!');
     });
 
+  // vm.addLogo = function () {
+  //     Upload.upload({
+  //       url: ENV_VARS + "topics/" + id ".json",
+  //       method: 'POST',
+  //       data: {
+  //         topic: {
+  //           logo: vm.topic.logo
+  //         }
+  //       }
+  //     })
+  //   };
+
   vm.addTopic = function () {
     var data = {
       topic: {
         title: vm.title,
-        description: vm.description,
-        logo: vm.logo
+        description: vm.description
+        // logo: vm.logo
       }
     };
     TopicsService.postTopic(data)
@@ -26,9 +38,18 @@ function topicsController($scope, toastr, TopicsService) {
         vm.title = "";
         vm.description = "";
         vm.logo = "";
+
+        Upload.upload({
+          url: ENV_VARS + "topics/" + success.data.id + ".json",
+          method: 'PUT',
+          data: {
+            topic: {
+              logo: vm.logo
+            }
+          }
+        })
       }, function (error) {
         toastr.error('Failed to add topic you entered', 'ERROR!');
       });
   };
-
 }

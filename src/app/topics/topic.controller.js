@@ -1,8 +1,8 @@
 angular
 .module('quizApp')
-.controller('TopicController', topicController);
+.controller('TopicController', TopicController);
 
-function topicController($scope, $stateParams, $state, toastr, TopicsService) {
+function TopicController($scope, $stateParams, $state, toastr, TopicsService, Upload, ENV_VARS) {
   var vm = this;
   vm.topic = {};
   vm.editForm = true;
@@ -21,18 +21,30 @@ function topicController($scope, $stateParams, $state, toastr, TopicsService) {
     }, function (error) {
       toastr.error('Failed to retrieve the topic you clicked', 'ERROR!');
     });
+    
   vm.updateTopic = function () {
     var data = {
       topic: {
         title: vm.topic.title,
-        description: vm.topic.description,
-        logo: vm.topic.logo
+        description: vm.topic.description
+        // logo: vm.topic.logo
       }
     };
     TopicsService.editTopic($stateParams.id, data)
       .then(function (success) {
         toastr.success('Topic has been updated', 'successfully');
         vm.topic = success.data;
+
+        Upload.upload({
+          url: ENV_VARS + "topics/" + vm.topic.id + ".json",
+          method: 'PUT',
+          data: {
+            topic: {
+              logo: vm.topic.logo
+            }
+          }
+        })
+
       },function (error) {
         toastr.error('Failed to editing this topic', 'ERROR!');
       });
@@ -48,5 +60,15 @@ function topicController($scope, $stateParams, $state, toastr, TopicsService) {
       });  
   }
 
-
+vm.updateLogo = function () {
+      Upload.upload({
+        url: 'ENV_VARS + "topics/" + id ".json"',
+        method: 'PUT',
+        data: {
+          topic: {
+            logo: $scope.logo
+          }
+        }
+      })
+    };
 }

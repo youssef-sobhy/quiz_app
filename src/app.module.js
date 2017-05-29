@@ -2,5 +2,5 @@
   'use strict';
 
   angular
-    .module('quizApp', ['ng-token-auth', 'ngRoute', 'ui.router', 'toastr']);
+    .module('quizApp', ['ng-token-auth', 'ngRoute', 'ui.router', 'toastr', 'ngFileUpload']);
 })();
