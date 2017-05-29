@@ -3,6 +3,22 @@
   <p>{{ vm.quiz.passing_score }}</p>
   <button type="button" ng-click="vm.delete()">Delete</button>
 
+  <button ng-click="vm.showEditQuiz()">Edit</button>
+	<form ng-submit="vm.updateQuiz()" ng-hide="vm.editQuiz">
+    <div>
+      <label for="title">Title</label>
+      <input type="text" name="title" id="title" ng-model="vm.quiz.title" required />
+    </div>
+    <br>  
+    <div>
+      <label for="passing_score">Passing Score</label>
+      <input type="number" name="passing_score" ng-model="vm.quiz.passing_score" min="1" max="100">
+    </div>
+    <div>
+      <button type="submit">Update</button>
+    </div>
+  </form>
+
   <div class="question" ng-controller="QuestionsController as vm" ng-init="i = 0">
     <form ng-submit="vm.submitQuiz(); i = i + 1">
       <!-- <div class="question" ng-repeat="question in vm.questions" ng-init="choices = question.choices; i = $index + 1">
@@ -28,6 +44,7 @@
       </p>
     </form>
   </div>
-  
+
   <ui-view></ui-view>
+
 </div>

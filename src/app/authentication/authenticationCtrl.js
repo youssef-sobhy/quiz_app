@@ -11,7 +11,6 @@ function AuthController($scope, $auth, $log, toastr) {
     .then(function () {
       toastr.success('You have successfully registered.');
     }).catch(function (response) {
-      $log.log(response);
     });
   };
 
@@ -21,7 +20,6 @@ function AuthController($scope, $auth, $log, toastr) {
     .then(function () {
       toastr.success('You have successfully logged in as a user.');
     }).catch(function (response) {
-      $log.log(response);
       toastr.error('Wrong email or password.', 'ERROR!');
     });
   };
@@ -35,7 +33,6 @@ function AuthController($scope, $auth, $log, toastr) {
     .then(function () {
       toastr.success('You have successfully logged in as a game maker.');
     }).catch(function (response) {
-      $log.log(response);
       toastr.error('Wrong email or password.', 'ERROR!');
     });
   };
