@@ -1,0 +1,18 @@
+<div ng-controller="QuestionsController as vm">
+  <form ng-submit="vm.addQuestion()" name="vm.questionForm">
+
+    <p>
+      <label for="question">Question</label>
+      <input type="text" name="question" id="question" ng-model="vm.question" required />
+    </p>
+  
+    <div ng-repeat="choice in vm.choices" ng-init="i = $index + 1">
+      <label for="choice{{ i }}">Choice {{ i }}</label>
+      <input type="text" name="choice{{ i }}" id="choice{{ i }}" ng-model="choice.choice"/>
+      <input type="checkbox" name="choice" ng-model="choice.right_choice" ng-change="vm.updateCheckBox($index)">
+    </div>
+
+    <button type="submit">Submit</button>
+  
+  </form>
+</div>

@@ -3,6 +3,7 @@ angular
 .controller('TopicController', TopicController);
 
 function TopicController($scope, $stateParams, $state, toastr, TopicsService, Upload, ENV_VARS) {
+
   var vm = this;
   vm.topic = {};
   vm.editForm = true;
@@ -15,13 +16,13 @@ function TopicController($scope, $stateParams, $state, toastr, TopicsService, Up
     }
   };
 
-  TopicsService.getTopic($stateParams.id)
+  TopicsService.getTopic($stateParams.topicId)
     .then(function (success) {
       vm.topic = success.data;
     }, function (error) {
       toastr.error('Failed to retrieve the topic you clicked', 'ERROR!');
     });
-    
+
   vm.updateTopic = function () {
     var data = {
       topic: {
@@ -30,7 +31,7 @@ function TopicController($scope, $stateParams, $state, toastr, TopicsService, Up
         // logo: vm.topic.logo
       }
     };
-    TopicsService.editTopic($stateParams.id, data)
+    TopicsService.editTopic($stateParams.topicId, data)
       .then(function (success) {
         toastr.success('Topic has been updated', 'successfully');
         vm.topic = success.data;
@@ -51,24 +52,13 @@ function TopicController($scope, $stateParams, $state, toastr, TopicsService, Up
   };
 
   vm.removeTopic = function () {
-    TopicsService.deleteTopic($stateParams.id)
+    TopicsService.deleteTopic($stateParams.topicId)
       .then(function (success) {
         vm.topic = success.data;
         $state.go('topics');
       }, function (error) {
         toastr.error('Failed to delete this topic', 'ERROR!');
-      });  
+      });
   }
 
-vm.updateLogo = function () {
-      Upload.upload({
-        url: 'ENV_VARS + "topics/" + id ".json"',
-        method: 'PUT',
-        data: {
-          topic: {
-            logo: $scope.logo
-          }
-        }
-      })
-    };
 }

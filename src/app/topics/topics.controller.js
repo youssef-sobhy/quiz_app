@@ -2,9 +2,14 @@ angular
 .module('quizApp')
 .controller('TopicsController', TopicsController);
 
+<<<<<<< HEAD
 function TopicsController($scope, toastr, TopicsService, Upload, ENV_VARS) {
+=======
+function TopicsController($scope, toastr, TopicsService) {
+>>>>>>> 2746d983ab64165de8915d558ca0a4903853edc1
   var vm = this;
   vm.topics = [];
+
   TopicsService.getTopics()
     .then(function (success) {
       vm.topics = success.data;

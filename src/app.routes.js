@@ -17,17 +17,17 @@ angular
         }
       }
     ]);
-    
+
     $stateProvider
-      .state('sign in', {
+      .state('sign_in', {
         url: '/',
         templateUrl: 'app/authentication/user_sign_in.html'
       })
-      .state('sign up', {
+      .state('sign_up', {
         url: '/sign_up',
         templateUrl: 'app/authentication/user_sign_up.html'
       })
-      .state('gm sign in', {
+      .state('gm_sign_in', {
         url: '/game_maker',
         templateUrl: 'app/authentication/gamemaker_sign_in.html'
       })
@@ -36,12 +36,20 @@ angular
         templateUrl: 'app/topics/topics.html'
       })
       .state('topic', {
-        url: '/topics/{id}',
+        url: '/topics/:topicId',
         templateUrl: 'app/topics/topic.html'
       })
-      .state('quiz', {
-        url:'/topics/{topic_id}/quizzes/{id}',
+      .state('topic.quiz', {
+        url: '/quizzes/:quizId',
         templateUrl: 'app/quizzes/quiz.html'
+      })
+      .state('topic.quiz.questions', {
+        url: '/questions',
+        templateUrl: 'app/questions/questions.html'
+      })
+      .state('topic.quiz.questions.new', {
+        url: '/new',
+        templateUrl: 'app/questions/new.html'
       });
     $locationProvider.html5Mode(true);
   });
