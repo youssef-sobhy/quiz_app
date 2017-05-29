@@ -1,8 +1,8 @@
 angular
 .module('quizApp')
-.controller('topicsController', topicsController);
+.controller('TopicsController', TopicsController);
 
-function topicsController($scope, $http, toastr, topicsService) {
+function TopicsController($scope, $http, toastr, topicsService) {
   var vm = this;
   vm.topics = [];
 

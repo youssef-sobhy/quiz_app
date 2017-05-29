@@ -1,5 +1,5 @@
 <div ng-controller="QuestionsController as vm">
-  <form ng-submit="vm.addQuestion()" name="vm.questionForm">
+  <form ng-submit="vm.addQuestion()" name="questionForm">
 
     <p>
       <label for="question">Question</label>
@@ -12,7 +12,7 @@
       <input type="checkbox" name="choice" ng-model="choice.right_choice" ng-change="vm.updateCheckBox($index)">
     </div>
 
-    <button type="submit">Submit</button>
+    <button type="submit" ng-disabled="questionForm.$invalid">Submit</button>
   
   </form>
 </div>

@@ -2,6 +2,7 @@ angular
   .module('quizApp')
   .factory('questionsService', function ($http, $stateParams, ENV_VARS) {
     var base_url = ENV_VARS.base_url + 'topics/' + $stateParams.topicId + '/quizzes/' + $stateParams.quizId;
+    var submitQuizUrl = 'http://localhost:3000/user_answers.json'
 
     return {
       getQuestions: function () {
@@ -15,6 +16,9 @@ angular
       },
       deleteQuestion: function (id) {
         return $http.delete(base_url + '/questions/' + id + '.json');
+      },
+      submitQuiz: function (data) {
+        return $http.post(submitQuizUrl, data);
       }
     };
   });

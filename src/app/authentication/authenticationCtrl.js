@@ -2,7 +2,7 @@ angular
 .module('quizApp')
 .controller('AuthController', AuthController);
 
-function AuthController($scope, $auth, $location, $log, toastr) {
+function AuthController($scope, $auth, $log, toastr) {
   var vm = this;
 
   vm.registerUser = function () {

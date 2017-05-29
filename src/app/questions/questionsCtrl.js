@@ -2,7 +2,7 @@ angular
   .module('quizApp')
   .controller('QuestionsController', QuestionsController);
 
-function QuestionsController($scope, $stateParams, $log, toastr, questionsService) {
+function QuestionsController($scope, $state, $stateParams, $log, toastr, questionsService) {
   var vm = this;
 
   questionsService.getQuestions($stateParams.topicId, $stateParams.quizId)
@@ -68,6 +68,31 @@ function QuestionsController($scope, $stateParams, $log, toastr, questionsServic
       function () {
         var index = vm.questions.indexOf(question);
         vm.questions.splice(index, 1);
+      },
+      function (err) {
+        $log.error(err);
+      }
+    );
+  };
+
+  vm.submitQuiz = function () {
+    var data = {
+      user_id: 1,
+      user_answer: {
+        quiz_id: $stateParams.quizId,
+        choice_id: vm.questions[$scope.i].selectedChoice
+      }
+    };
+
+    questionsService.submitQuiz(data)
+    .then(
+      function (success) {
+        $log.log(success.data);
+        if (vm.questions.length === $scope.i) {
+          $state.go('topic', {
+            'topicId': $stateParams.topicId
+          })
+        }
       },
       function (err) {
         $log.error(err);
