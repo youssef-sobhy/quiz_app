@@ -3,7 +3,7 @@
   angular.module('alMakinah')
   .controller('AuthController', AuthController);
 
-  function AuthController($scope, $auth, $location, toastr) {
+  function AuthController($scope, $auth, $log, toastr) {
     var vm = this;
 
     vm.registerUser = function () {

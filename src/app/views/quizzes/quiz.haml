@@ -13,4 +13,23 @@
       %input{:max => "100", :min => "1", :name => "passing_score", "ng-model" => "vm.quiz.passing_score", :type => "number"}
     %div
       %button{:type => "submit"} Update
+  .question{"ng-controller" => "QuestionsController as vm", "ng-init" => "i = 0"}
+    %form{"ng-submit" => "vm.submitQuiz(); i = i + 1"}
+      /
+        <div class="question" ng-repeat="question in vm.questions" ng-init="choices = question.choices; i = $index + 1">
+        
+        <p>{{ question.question }}</p>
+        
+        <div ng-repeat="choice in choices">
+        <input type="radio" name="question{{ i }}" id="question{{ i }}choice{{ $index }}" ng-model="question.selectedChoice" ng-value="choice.id" />
+        <label for="question{{ i }}choice{{ $index }}">{{ choice.choice }}</label>
+        </div>
+        </div>
+      %p {{ vm.questions[i].question }}
+      %div{"ng-repeat" => "choice in vm.questions[i].choices"}
+        %input{:id => "question{{ i }}choice{{ $index }}", :name => "question{{ i }}", "ng-model" => "vm.questions[i].selectedChoice", "ng-value" => "choice.id", :required => "", :type => "radio"}
+        %label{:for => "question{{ i }}choice{{ $index }}"} {{ choice.choice }}
+      %p
+        %button{"ng-hide" => "vm.questions.length <= i + 1", :type => "submit"} Next
+        %button{"ng-show" => "vm.questions.length === i + 1", :type => "submit"} Submit
   %ui-view
