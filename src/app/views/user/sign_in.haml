@@ -1,0 +1,10 @@
+.login-form.container.w-xxl.w-auto-xs{"ng-controller" => "AuthController as auth"}
+  %form{"ng-init" => "loginForm = {}", "ng-submit" => "auth.loginUser()"}
+    %p
+      %label{:for => "email"} Email
+      %input#email.form-control{:name => "email", "ng-model" => "loginForm.email", :type => "email"}
+    %p
+      %label{:for => "password"} Password
+      %input#password.form-control{:name => "password", "ng-model" => "loginForm.password", :type => "password"}
+    %button.btn.btn-md.btn-primary.btn-block{:type => "submit", "ng-hide" => "auth.signedIn"} Login
+    %a.btn.btn-md.btn-primary.btn-block{"ui-sref" => "sign_up", "ng-hide" => "auth.signedIn"} Register

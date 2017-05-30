@@ -5,46 +5,86 @@
     $locationProvider.html5Mode(true);
 
     $stateProvider
-      .state("dashboard", {
+
+    // User routes
+
+      .state('user', {
         abstract: true,
-        templateUrl: "app/views/layouts/dashboard_layout.html",
-        controller: "DashboardController"
-      })
-      .state("dashboard.home", {
-        url: "/",
-        templateUrl: "app/views/dashboard/index.html"
-      })
-      .state('sign_in', {
-        url: '/sign_in',
-        templateUrl: 'app/views/authentication/user_sign_in.html'
+        template: '<ui-view>',
+        resolve: {
+          auth: ['AuthService', function (AuthService) {
+            AuthService.authenticateUser()
+          }]
+        }
       })
       .state('sign_up', {
         url: '/sign_up',
-        templateUrl: 'app/views/authentication/user_sign_up.html'
+        templateUrl: 'app/views/user/sign_up.html'
       })
-      .state('gm_sign_in', {
-        url: '/game_maker',
-        templateUrl: 'app/views/authentication/gamemaker_sign_in.html'
+      .state('sign_in', {
+        url: '/sign_in',
+        templateUrl: 'app/views/user/sign_in.html'
       })
-      .state('dashboard.topics', {
+      .state('user.topics', {
         url: '/topics',
-        templateUrl: 'app/views/topics/topics.html'
+        templateUrl: 'app/views/user/topics.html'
       })
-      .state('topic', {
+      .state('user.topic', {
+        abstract: true,
+        templateUrl: 'app/views/user/topic.html'
+      })
+      .state('user.topic.quizzes', {
         url: '/topics/:topicId',
-        templateUrl: 'app/views/topics/topic.html'
+        templateUrl: 'app/views/user/quizzes.html'
       })
-      .state('topic.quiz', {
-        url: '/quizzes/:quizId',
-        templateUrl: 'app/views/quizzes/quiz.html'
+      .state('user.topic.quiz', {
+        url: '/topics/:topicId/quizzes/:quizId',
+        templateUrl: 'app/views/user/quiz.html'
       })
-      .state('topic.quiz.questions', {
-        url: '/questions',
-        templateUrl: 'app/views/questions/questions.html'
+
+      // GameMaker routes
+
+      .state('game_maker', {
+        url: '/game_maker',
+        abstract: true,
+        template: '<ui-view>',
+        resolve: {
+          auth: ['AuthService', function (AuthService) {
+            AuthService.authenticateGameMaker()
+          }]
+        }
       })
-      .state('topic.quiz.questions.new', {
-        url: '/new',
-        templateUrl: 'app/views/questions/new.html'
+      .state('game_maker.sign_in', {
+        url: '/sign_in',
+        templateUrl: 'app/views/game-maker/sign_in.html'
+      })
+      .state('game_maker.topics', {
+        url: '/topics',
+        templateUrl: 'app/views/game-maker/topics.html'
+      })
+      .state('game_maker.topic', {
+        abstract: true,
+        templateUrl: 'app/views/game-maker/topic.html'
+      })
+      .state('game_maker.topic.quizzes', {
+        url: '/topics/:topicId',
+        templateUrl: 'app/views/game-maker/quizzes.html'
+      })
+      .state('game_maker.topic.quiz', {
+        url: '/topics/:topicId/quizzes/:quizId',
+        templateUrl: 'app/views/game-maker/quiz.html'
+      })
+      .state('game_maker.topic.quiz.new_question', {
+        templateUrl: 'app/views/game-maker/new.html'
+      })
+
+      // Error pages
+
+      .state('401', {
+        templateUrl: 'app/views/error-pages/401.html'
+      })
+      .state('403', {
+        templateUrl: 'app/views/error-pages/403.html'
       });
 
     $urlRouterProvider.otherwise('/');
