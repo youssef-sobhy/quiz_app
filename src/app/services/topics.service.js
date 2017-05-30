@@ -1,6 +1,6 @@
 angular
   .module('quizApp')
-  .factory('TopicsService', function ($http, ENV_VARS) {
+  .factory('TopicsService', function ($http, Upload, ENV_VARS) {
     var baseUrl = ENV_VARS.baseUrl + 'topics';
 
     return {
@@ -11,10 +11,18 @@ angular
         return $http.get(baseUrl + '/' + id + '.json');
       },
       editTopic: function (id, data) {
-        return $http.put(baseUrl + '/' + id + '.json', data);
+        return Upload.upload({
+          url: baseUrl + '/' + id + '.json',
+          method: 'put',
+          data: data
+        });
       },
-      postTopic: function (data) {
-        return $http.post(baseUrl + '.json', data);
+      postTopic: function (data){
+        return Upload.upload({
+          url: baseUrl + '.json',
+          method: 'post',
+          data: data
+        });
       },
       deleteTopic: function (id) {
         return $http.delete(baseUrl + '/' + id + '.json');
