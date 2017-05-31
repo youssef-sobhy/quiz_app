@@ -1,10 +1,22 @@
-.login-form{"ng-controller" => "AuthController as auth"}
-  %form{"ng-init" => "loginForm = {}", "ng-submit" => "auth.loginUser()"}
-    %p
-      %label{:for => "email"} Email
-      %input#email{:name => "email", "ng-model" => "loginForm.email", :type => "email"}
-    %p
-      %label{:for => "password"} Password
-      %input#password{:name => "password", "ng-model" => "loginForm.password", :type => "password"}
-    %button{:type => "submit"} Login
-    %a.register{"ui-sref" => "sign_up"} Register
+#app.app.ng-scope.app-header-fixed.app-aside-fixed{"ng-class" => "{'app-header-fixed':app.settings.headerFixed, 'app-aside-fixed':app.settings.asideFixed, 'app-aside-folded':app.settings.asideFolded, 'app-aside-dock':app.settings.asideDock, 'container':app.settings.container}", "ui-view" => ""}
+  / uiView:
+.fade-in-right-big.smooth.ng-scope{"ui-view" => ""}
+  .container.w-xxl.w-auto-xs.ng-scope#login{"ng-controller" => "AuthController as auth", "ng-init" => "app.settings.container = false;"}
+    %a.navbar-brand.block.m-t.ng-binding{:href => ""} Quizical
+    .m-b-lg
+      .wrapper.text-center{"ng-controller" => "AuthController as auth"}
+        %strong Sign in to get in touch
+      %form.form-validation.ng-pristine.ng-valid-email.ng-invalid.ng-invalid-required{:name => "form" "ng-init" => "loginForm = {}", "ng-submit" => "auth.loginUser()"}
+        .text-danger.wrapper.text-center.ng-binding.ng-hide{"aria-hidden" => "true", "ng-show" => "authError"}
+        .list-group.list-group-sm
+          .list-group-item
+            %input.form-control.no-border.ng-pristine.ng-untouched.ng-valid-email.ng-invalid.ng-invalid-required{"aria-invalid" => "true", "aria-required" => "true", "ng-model" => "loginForm.email", :placeholder => "Email", :required => "", :type => "email"}
+          .list-group-item
+            %input.form-control.no-border.ng-pristine.ng-untouched.ng-invalid.ng-invalid-required{"aria-invalid" => "true", "aria-required" => "true", "ng-model" => "loginForm.password", :placeholder => "Password", :required => "", :type => "password"}
+        %button.btn.btn-lg.btn-primary.btn-block{"aria-disabled" => "true", :disabled => "disabled", "ng-click" => "login()", "ng-disabled" => "form.$invalid", :type => "submit"} Log in
+        .text-center.m-t.m-b
+          %a{:href => "#/access/forgotpwd", "ui-sref" => "access.forgotpwd"} Forgot password?
+        .line.line-dashed
+        %p.text-center
+          %small Not a member?
+      %a.btn.btn-lg.btn-default.btn-block{"ui-sref" => "sign_up"} Sign up now

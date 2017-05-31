@@ -1,24 +1,35 @@
-%div{"ng-controller" => "AuthController as auth"}
-  %form{"ng-init" => "registrationForm = {}", "ng-submit" => "auth.registerUser()"}
-    %p
-      %label{:for => "first-name"} First name
-      %input#first-name{:name => "first_name", "ng-model" => "registrationForm.first_name", :type => "text"}
-    %p
-      %label{:for => "last-name"} Last name
-      %input#last-name{:name => "last_name", "ng-model" => "registrationForm.last_name", :type => "text"}
-    %p
-      %label{:for => "date_of_birth"} Date of birth
-      %input#date_of_birth{:name => "date_of_birth", "ng-model" => "registrationForm.date_of_birth", "ng-model-options" => "{timezone:'UTC'}", :type => "date", "ui-date" => "{dateFormat: 'yy-mm-dd'}", "ui-date-format" => "yy-mm-dd"}
-    %p
-      %label{:for => "user-name"} Username
-      %input#user-name{:name => "user_name", "ng-model" => "registrationForm.user_name", :type => "text"}
-    %p
-      %label{:for => "email"} Email
-      %input#email{:name => "email", "ng-model" => "registrationForm.email", :type => "email"}
-    %p
-      %label{:for => "password"} Password
-      %input#password{:name => "password", "ng-model" => "registrationForm.password", :type => "password"}
-    %p
-      %label{:for => "password-confirmation"} Password confirmation
-      %input#password-confirmation{:name => "password_confirmation", "ng-model" => "registrationForm.password_confirmation", :type => "password"}
-    %button{:type => "Submit"} Register
+#app.app.ng-scope.app-header-fixed.app-aside-fixed{"ng-class" => "{'app-header-fixed':app.settings.headerFixed, 'app-aside-fixed':app.settings.asideFixed, 'app-aside-folded':app.settings.asideFolded, 'app-aside-dock':app.settings.asideDock, 'container':app.settings.container}", "ui-view" => ""}
+  / uiView:
+  .fade-in-right-big.smooth.ng-scope{"ui-view" => ""}
+    .container.w-xxl.w-auto-xs.ng-scope#sign-up{"ng-controller" => "AuthController as auth", "ng-init" => "app.settings.container = false;"}
+      %a.navbar-brand.block.m-t.ng-binding{:href => ""} Quizical
+      .m-b-lg
+        .wrapper.text-center
+          %strong Sign up to find interesting thing
+        %form.form-validation.ng-pristine.ng-invalid.ng-invalid-required.ng-valid-email{:name => "form", "ng-init" => "registrationForm = {}", "ng-submit" => "auth.registerUser()"}
+          .text-danger.wrapper.text-center.ng-binding.ng-hide{"aria-hidden" => "true", "ng-show" => "authError"}
+          .list-group.list-group-sm
+            .list-group-item
+              %input.form-control.no-border.ng-pristine.ng-untouched.ng-invalid.ng-invalid-required{"aria-invalid" => "true", "aria-required" => "true", "ng-model" => "registrationForm.user_name", :placeholder => "Username", :required => ""}      
+            .list-group-item
+              %input.form-control.no-border.ng-pristine.ng-untouched.ng-invalid.ng-invalid-required{"aria-invalid" => "true", "aria-required" => "true", "ng-model" => "registrationForm.first_name", :placeholder => "Firstname", :required => ""}     
+            .list-group-item
+              %input.form-control.no-border.ng-pristine.ng-untouched.ng-invalid.ng-invalid-required{"aria-invalid" => "true", "aria-required" => "true", "ng-model" => "registrationForm.last_name", :placeholder => "Lastname", :required => ""}
+            .list-group-item
+              %input.form-control.no-border.ng-pristine.ng-untouched.ng-valid-email.ng-invalid.ng-invalid-required{"aria-invalid" => "true", "aria-required" => "true", "ng-model" => "registrationForm.email", :placeholder => "Email", :required => "", :type => "email"}
+            .list-group-item
+              %input.form-control.no-border.ng-pristine.ng-untouched.ng-invalid.ng-invalid-required{"aria-invalid" => "true", "aria-required" => "true", "ng-model" => "registrationForm.password", :placeholder => "Password", :required => "", :type => "password"}         
+            .list-group-item
+              %input.form-control.no-border.ng-pristine.ng-untouched.ng-invalid.ng-invalid-required{"aria-invalid" => "true", "aria-required" => "true", "ng-model" => "registrationForm.password_confirmation", :placeholder => "Password Confirmation", :required => "", :type => "password"}
+          %button.btn.btn-lg.btn-primary.btn-block{"aria-disabled" => "true", :disabled => "disabled", "ng-click" => "signup()", "ng-disabled" => "form.$invalid", :type => "submit"} Sign up
+          .line.line-dashed
+          %p.text-center
+            %small Already have an account?
+          %a.btn.btn-lg.btn-default.btn-block{:href => "#/access/signin", "ui-sref" => "access.signin"} Sign in
+      / ngInclude: 'tpl/blocks/page_footer.html'
+      .text-center.ng-scope{"ng-include" => "'tpl/blocks/page_footer.html'"}
+        %p.ng-scope
+          %small.text-muted
+            Web app framework base on Bootstrap and AngularJS
+            %br>/
+            © 2014

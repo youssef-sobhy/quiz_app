@@ -1,0 +1,19 @@
+.user{"ng-controller" => "UserProfileController"}
+  %h1
+    %img{:alt => "Your profile picture", :src => ""}
+    %span Username
+  %button{"ng-click" => "showUserEditForm()"} Edit
+  %form{"ng-submit" => "updateUserProfile(updateAccountForm)", "ng-init" => "updateAccountForm = {}"}
+    %div
+      %label{:for => "user_name"} Username
+      %input#{:type => "text", :name => "user_name", "ng-model" => "user_name.updateAccountForm"}     
+    %div
+      %label{:for => "first_name"} Firstname
+      %input#{:type => "text", :name => "first_name", "ng-model" => "first_name.updateAccountForm"}
+    %div
+      %label{:for => "last_name"} Firstname
+      %input#{:type => "text", :name => "last_name", "ng-model" => "last_name.updateAccountForm"}
+    %div
+      %label{:for => "email"} Email
+      %input#{:type => "text", :name => "email", "ng-model" => "email.updateAccountForm"}
+    %button{:type => "submit"}

@@ -48,6 +48,7 @@
       });
 
     $urlRouterProvider.otherwise('/');
+    $locationProvider.html5Mode(true);
   });
 
 }).call(this);
