@@ -3,11 +3,11 @@
   angular.module('alMakinah')
   .controller('quizzesController', quizzesController);
 
-  function quizzesController($scope, $http, toastr, quizzesService, $stateParams) {
+  function quizzesController($scope, $http, toastr, QuizzesService, $stateParams) {
     var vm = this;
     vm.quizzes = [];
 
-    quizzesService.getQuizzes($stateParams.topicId)
+    QuizzesService.getQuizzes($stateParams.topicId)
     .then(function(success){
       vm.quizzes = success.data;
     }, function(error){
@@ -22,7 +22,7 @@
         }
       };
 
-      quizzesService.postQuiz($stateParams.topicId, data)
+      QuizzesService.postQuiz($stateParams.topicId, data)
       .then(function(success){
         vm.quizzes.push(success.data);
         vm.title = "";

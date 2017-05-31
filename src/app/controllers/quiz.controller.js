@@ -3,7 +3,7 @@
   angular.module('alMakinah')
   .controller('quizController', quizController);
 
-  function quizController($scope, $state, toastr, quizzesService, $stateParams){
+  function quizController($scope, $state, toastr, QuizzesService, $stateParams){
     var vm = this;
     vm.quiz = {};
 
@@ -17,7 +17,7 @@
       }
     };
 
-    quizzesService.getQuiz($stateParams.topicId, $stateParams.quizId)
+    QuizzesService.getQuiz($stateParams.topicId, $stateParams.quizId)
     .then(function(success){
       vm.quiz = success.data;
     }, function(error){
@@ -25,7 +25,7 @@
     })
 
     vm.delete = function() {
-      quizzesService.deleteQuiz($stateParams.topicId, $stateParams.quizId)
+      QuizzesService.deleteQuiz($stateParams.topicId, $stateParams.quizId)
       .then(function(success){
         $state.go("topic", { "topicId": $stateParams.topicId});
       }, function(error){
@@ -41,7 +41,7 @@
       }
         };
 
-      quizzesService.editQuiz($stateParams.topicId, $stateParams.quizId, data)
+      QuizzesService.editQuiz($stateParams.topicId, $stateParams.quizId, data)
       .then(function(success){
         console.log("success.data")
         toastr.success('Your Quiz has been successfully updated!');

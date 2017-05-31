@@ -3,39 +3,41 @@
   angular.module('alMakinah')
   .controller('AuthController', AuthController);
 
-  function AuthController($scope, $auth, $log, toastr) {
+  function AuthController($scope, $auth, $log, toastr, AuthService) {
     var vm = this;
+    // vm.signedIn = AuthService.signedIn;
+
+    // $scope.$on('signedIn', function () {
+    //   vm.signedIn = AuthService.signedIn;
+    // });
+
+    // $log.log(vm.signedIn);
+
+    AuthService.getCurrentUser()
+
+    .then(function (response) {
+      vm.currentUser = response;
+      vm.signedIn = true;
+    });
 
     vm.registerUser = function () {
-      $auth.submitRegistration($scope.registrationForm)
-
-      .then(function () {
-        toastr.success('You have successfully registered.');
-      }).catch(function (response) {
-      });
+      AuthService.registerUser($scope.registrationForm)
     };
 
     vm.loginUser = function () {
-      $auth.submitLogin($scope.loginForm)
-
-      .then(function () {
-        toastr.success('You have successfully logged in as a user.');
-      }).catch(function (response) {
-        toastr.error('Wrong email or password.', 'ERROR!');
-      });
+      AuthService.loginUser($scope.loginForm)
     };
 
     vm.loginGameMaker = function () {
-      $auth.submitLogin($scope.loginForm,
-      {
-        config: 'gameMaker'
-      })
+      AuthService.loginGameMaker($scope.loginForm)
+    };
 
-      .then(function () {
-        toastr.success('You have successfully logged in as a game maker.');
-      }).catch(function (response) {
-        toastr.error('Wrong email or password.', 'ERROR!');
-      });
+    vm.logOutUser = function () {
+      AuthService.logOutUser()
+    };
+
+    vm.logOutGameMaker = function () {
+      AuthService.logOutGameMaker()
     };
   }
 

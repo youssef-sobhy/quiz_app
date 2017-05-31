@@ -3,10 +3,10 @@
   angular.module('alMakinah')
   .controller('QuestionsController', QuestionsController);
 
-  function QuestionsController($scope, $state, $stateParams, $log, toastr, questionsService) {
+  function QuestionsController($scope, $state, $stateParams, $log, toastr, QuestionsService) {
     var vm = this;
 
-    questionsService.getQuestions($stateParams.topicId, $stateParams.quizId)
+    QuestionsService.getQuestions($stateParams.topicId, $stateParams.quizId)
     .then(
       function (success) {
         vm.questions = success.data;
@@ -34,7 +34,7 @@
         }
       };
 
-      questionsService.addQuestion(vm.questionData)
+      QuestionsService.addQuestion(vm.questionData)
       .then(
         function (success) {
           $log.log(success.data);
@@ -52,7 +52,7 @@
         question: question
       };
 
-      questionsService.editQuestion(question.id, data)
+      QuestionsService.editQuestion(question.id, data)
       .then(
         function () {
           toastr.success('Question successfully edited!');
@@ -64,7 +64,7 @@
     };
 
     vm.deleteQuestion = function (question) {
-      questionsService.deleteQuestion(question.id)
+      QuestionsService.deleteQuestion(question.id)
       .then(
         function () {
           var index = vm.questions.indexOf(question);
@@ -75,7 +75,7 @@
         }
         );
     };
-    
+
     vm.submitQuiz = function () {
       var data = {
         user_id: 1,
@@ -85,7 +85,7 @@
         }
       };
 
-      questionsService.submitQuiz(data)
+      QuestionsService.submitQuiz(data)
       .then(
         function (success) {
           $log.log(success.data);

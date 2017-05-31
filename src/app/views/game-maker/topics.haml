@@ -1,7 +1,9 @@
 .topics{"ng-controller" => "TopicsController as vm"}
+  .auth{"ng-controller" => "AuthController as auth"}
+    %button{"ng-click" => "auth.logOutGameMaker()", :type => "button"} Log out
   .topic{"ng-repeat" => "topic in vm.topics"}
     %h1
-      %a{"ui-sref" => "topic({topicId: topic.id})"}
+      %a{"ui-sref" => "game_maker.topic.quizzes({topicId: topic.id})"}
         %img{:alt => "{{ topic.title }}", :src => "{{ topic.logo }}"}
         %span {{ topic.title }}
     %p {{ topic.description }}
@@ -20,3 +22,4 @@
     %br
     %div
       %button{:type => "submit"} Submit
+

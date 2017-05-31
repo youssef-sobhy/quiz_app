@@ -1,0 +1,7 @@
+.topic{"ng-controller" => "TopicController as vm"}
+  %h1
+    %img{:alt => "{{ vm.topic.title }}", :src => "{{ vm.topic.logo }}"}
+    %span {{ vm.topic.title }}
+  %p {{ vm.topic.description }}
+
+  %ui-view

@@ -1,0 +1,9 @@
+.topics{"ng-controller" => "TopicsController as vm"}
+		.auth{"ng-controller" => "AuthController as auth"}
+  		%button{"ng-click" => "auth.logOutUser()", :type => "button"} Log out
+  .topic{"ng-repeat" => "topic in vm.topics"}
+    %h1
+      %a{"ui-sref" => "user.topic.quizzes({topicId: topic.id})"}
+        %img{:alt => "{{ topic.title }}", :src => "{{ topic.logo }}"}
+        %span {{ topic.title }}
+    %p {{ topic.description }}

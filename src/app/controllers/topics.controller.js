@@ -3,7 +3,7 @@
   angular.module('alMakinah')
   .controller('TopicsController', TopicsController);
 
-  function TopicsController($scope, toastr, TopicsService) {
+  function TopicsController($scope, $location, toastr, TopicsService, AuthService) {
     var vm = this;
     vm.topics = [];
 
