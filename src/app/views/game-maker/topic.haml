@@ -1,7 +1,7 @@
 .topic{"ng-controller" => "TopicController as vm"}
   %h1
     %a{"ui-sref" => "game_maker.topic.quizzes({topicId: vm.topic.id})"}
-      %img{:alt => "{{ vm.topic.title }}", :src => "{{ vm.topic.logo }}"}
+      %img{:alt => "{{ vm.topic.title }}", :src => "{{ vm.topic.logo['url'] }}"}
       %span {{ vm.topic.title }}
   %p {{ vm.topic.description }}
   %button{"ng-click" => "vm.removeTopic()"} Delete
@@ -17,7 +17,7 @@
     %br
     %div
       %label{:for => "logo"} Logo
-      %input#logo{:name => "logo", "ng-model" => "vm.topic.logo", :type => "file"}
+      %input#logo{:name => "logo", "ng-model" => "vm.topic.logo", "ngf-select" => "", :type => "file"}
     %br
     %div
       %button{:type => "submit"} Update

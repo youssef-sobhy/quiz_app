@@ -4,7 +4,7 @@
   .topic{"ng-repeat" => "topic in vm.topics"}
     %h1
       %a{"ui-sref" => "game_maker.topic.quizzes({topicId: topic.id})"}
-        %img{:alt => "{{ topic.title }}", :src => "{{ topic.logo }}"}
+        %img{:alt => "{{ topic.title }}", :src => "{{ topic.logo['url'] }}"}
         %span {{ topic.title }}
     %p {{ topic.description }}
   %form{"ng-submit" => "vm.addTopic()"}
@@ -18,7 +18,7 @@
     %br
     %div
       %label{:for => "logo"} Logo
-      %input#logo{:name => "logo", "ng-model" => "vm.logo", :type => "file"}
+      %input#logo{:name => "logo", "ng-model" => "vm.logo", "ngf-select" => "", :type => "file"}
     %br
     %div
       %button{:type => "submit"} Submit
