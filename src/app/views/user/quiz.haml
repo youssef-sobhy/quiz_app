@@ -1,14 +1,22 @@
 .quiz-show{"ng-controller" => "quizController as vm"}
   .container
-    %h1 {{ vm.quiz.title }}
+    .quiz-title
+      %h1.h1.text-info.font-thin.h1 {{ vm.quiz.title }}
+  .container
     / %p {{ vm.quiz.passing_score }}
     .question{"ng-controller" => "QuestionsController as vm", "ng-init" => "i = 0"}
-      %form{"ng-submit" => "vm.submitQuiz(); i = i + 1"}
-        %p {{ vm.questions[i].question }}
-        %div{"ng-repeat" => "choice in vm.questions[i].choices"}
-          %input{:id => "question{{ i }}choice{{ $index }}", :name => "question{{ i }}", "ng-model" => "vm.questions[i].selectedChoice", "ng-value" => "choice.id", :required => "", :type => "radio"}
-          %label{:for => "question{{ i }}choice{{ $index }}"} {{ choice.choice }}
-        %p
-          %button{"ng-hide" => "vm.questions.length <= i + 1", :type => "submit"} Next
-          %button{"ng-show" => "vm.questions.length === i + 1", :type => "submit"} Submit
+      %p.question {{ vm.questions[i].question }}
+      %form.bs-example.form-horizontal{"ng-submit" => "vm.submitQuiz(); i = i + 1"}
+        .form-group
+          .col-lg-6{"ng-repeat" => "choice in vm.questions[i].choices"}
+            .choice
+              %label.i-checks{:for => "question{{ i }}choice{{ $index }}"} 
+                %input{:id => "question{{ i }}choice{{ $index }}", :name => "question{{ i }}", "ng-model" => "vm.questions[i].selectedChoice", "ng-value" => "choice.id", :required => "", :type => "radio"}
+                %i
+                {{ choice.choice }}
+          %div{"ng-show" => "vm.questions.length > 0"}
+            %button.btn.btn-sm.btn-info{"ng-hide" => "vm.questions.length <= i + 1", :type => "submit"} Next
+            %button.btn.btn-sm.btn-info{"ng-show" => "vm.questions.length === i + 1", :type => "submit"} Submit
+      .quiz-score
+        %h1 {{vm.score}}
   %ui-view

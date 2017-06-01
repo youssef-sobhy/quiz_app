@@ -3,8 +3,8 @@
     .row
       .col-sm-12.col-xs-12
         %h1.m-n.font-thin.h3.text-black
-          %img{:alt => "{{ vm.topic.title }}", :src => "{{ vm.topic.logo['url'] }}"}
-          / %img.topic-logo{:alt => "", :src => "app/assets/images/ruby.png"}
+          / %img{:alt => "{{ vm.topic.title }}", :src => "{{ vm.topic.logo['url'] }}"}
+          %img.topic-logo{:alt => "", :src => "app/assets/images/ruby.png"}
           %span.topic-title {{ vm.topic.title }}
         / %p.text-muted {{ vm.topic.description }}
         

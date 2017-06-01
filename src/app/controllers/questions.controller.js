@@ -107,11 +107,13 @@
             QuestionsService.submitScore(scoreData)
 
             .then(function (success) {
-              toastr.info('Woot ' + success.data.score + '%')
-            })
-
-            $state.go('topic', {
-              'topicId': $stateParams.topicId
+              // toastr.info('Woot ' + success.data.score + '%')
+              vm.score = Math.round(success.data.score)+'%';
+              vm.questions = {};
+              // $state.go('topic', {
+              //   'topicId': $stateParams.topicId,
+              //   'quizId': $stateParams.topicId
+              // })
             })
           }
         },
