@@ -2,7 +2,8 @@
   <div class="topic" ng-repeat="topic in vm.topics">
     <h1> 
       <a ui-sref="topic({topicId: topic.id})">
-        <img src="{{ topic.logo['url'] }}" alt="{{ topic.title }}" /> <span>{{ topic.title }}</span>
+        <img src="{{ topic.logo['url'] }}" alt="{{ topic.title }}"  /> <span>{{ topic.title }}</span>
+        <!-- width="200" height="200" -->
       </a>
     </h1>
     <p>{{ topic.description }}</p>
