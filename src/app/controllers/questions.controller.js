@@ -3,8 +3,17 @@
   angular.module('quizical')
   .controller('QuestionsController', QuestionsController);
 
-  function QuestionsController($scope, $state, $stateParams, $log, toastr, QuestionsService) {
+  function QuestionsController($scope, $state, $stateParams, $log, toastr, QuestionsService, AuthService) {
     var vm = this;
+
+    // Get current logged in user
+
+    AuthService.getCurrentUser()
+
+    .then(function (response) {
+      vm.currentUser = response;
+      vm.signedIn = true;
+    });
 
     QuestionsService.getQuestions($stateParams.topicId, $stateParams.quizId)
     .then(
@@ -78,18 +87,29 @@
 
     vm.submitQuiz = function () {
       var data = {
-        user_id: 1,
+        user_id: vm.currentUser.id,
         user_answer: {
           quiz_id: $stateParams.quizId,
           choice_id: vm.questions[$scope.i].selectedChoice
         }
       };
 
+      var scoreData = {
+        user_id: vm.currentUser.id,
+        quiz_id: $stateParams.quizId
+      }
+
       QuestionsService.submitQuiz(data)
       .then(
         function (success) {
           $log.log(success.data);
           if (vm.questions.length === $scope.i) {
+            QuestionsService.submitScore(scoreData)
+
+            .then(function (success) {
+              toastr.info('Woot ' + success.data.score + '%')
+            })
+
             $state.go('topic', {
               'topicId': $stateParams.topicId
             })

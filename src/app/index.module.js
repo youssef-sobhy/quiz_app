@@ -10,7 +10,8 @@
         'ui.bootstrap',
         'toaster',
         'ng-token-auth',
-        'toastr'
+        'toastr',
+        'ngFileUpload'
     ]);
 
 }).call(this);

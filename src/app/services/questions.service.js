@@ -4,6 +4,7 @@
   .factory('QuestionsService', function ($http, $stateParams, ENV_VARS) {
     var baseUrl = ENV_VARS.baseUrl + 'topics/' + $stateParams.topicId + '/quizzes/' + $stateParams.quizId;
     var submitQuizUrl = ENV_VARS.baseUrl + 'user_answers.json'
+    var submitScoreUrl = ENV_VARS.baseUrl + 'scores.json'
 
     return {
       getQuestions: function () {
@@ -20,6 +21,9 @@
       },
       submitQuiz: function (data) {
         return $http.post(submitQuizUrl, data);
+      },
+      submitScore: function (data) {
+        return $http.post(submitScoreUrl, data);
       }
     };
   });

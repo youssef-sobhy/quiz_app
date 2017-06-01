@@ -73,7 +73,7 @@
         })
 
         .then(function () {
-          $state.go('game_maker.sign_in');
+          $state.go('gm_sign_in');
           toastr.success('You have successfully logged out.');
         }).catch(function (response) {
           $log.error(response);
@@ -88,7 +88,7 @@
           }
         },
         function () {
-          $state.go('game_maker.sign_in')
+          $state.go('gm_sign_in')
         })
       }
 

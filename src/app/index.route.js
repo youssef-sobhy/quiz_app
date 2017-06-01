@@ -54,8 +54,8 @@
           }]
         }
       })
-      .state('game_maker.sign_in', {
-        url: '/sign_in',
+      .state('gm_sign_in', {
+        url: '/game_maker/sign_in',
         templateUrl: 'app/views/game-maker/sign_in.html'
       })
       .state('game_maker.topics', {
