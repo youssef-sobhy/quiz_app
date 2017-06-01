@@ -1,0 +1,5 @@
+#dashboard-wrapper
+  .app-header.navbar{"data-ng-include": " 'app/views/partials/_header_user.html' "}
+  .app-contnt{ "ng-class": "{ 'h-full': setHideFooter() }" }
+    %div{"ui-butterbar": ""}
+    .app-content-body.fade-in{"ui-view": "", "ng-class": "{ 'h-full app-content-full': app.hideFooter }"}

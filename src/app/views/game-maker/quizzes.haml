@@ -1,9 +1,10 @@
-.quiz{"ng-controller" => "quizController as vm"}
-  %h1 {{ vm.quiz.title }}
-  %p {{ vm.quiz.passing_score }}
-  %button{"ng-click" => "vm.delete()", :type => "button"} Delete
-  %button{"ng-click" => "vm.showEditQuiz()"} Edit
-  %form{"ng-hide" => "vm.editQuiz", "ng-submit" => "vm.updateQuiz()"}
+.quizzes{"ng-controller" => "quizzesController as vm"}
+  .quiz{"ng-repeat" => "quiz in vm.quizzes"}
+    %h1
+      %a{:ui_sref => "game_maker.topic.quiz({quizId: quiz.id, topicId: quiz.topic_id})"} {{ quiz.title }}
+    %p {{ quiz.passing_score }}
+  %ui-view
+  %form{"ng-submit" => "vm.addQuiz()"}
     %div
       %label{:for => "title"} Title
       %input#title{:name => "title", "ng-model" => "vm.quiz.title", :required => "", :type => "text"}
@@ -11,6 +12,6 @@
     %div
       %label{:for => "passing_score"} Passing Score
       %input{:max => "100", :min => "1", :name => "passing_score", "ng-model" => "vm.quiz.passing_score", :type => "number"}
+    %br
     %div
-      %button{:type => "submit"} Update
-  %ui-view
+      %button{:type => "submit"} Add Quiz

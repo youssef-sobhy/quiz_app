@@ -1,0 +1,8 @@
+.container
+  .row
+    .quizzes{"ng-controller" => "quizzesController as vm"}
+      .col-md-4.col-sm-6{"ng-repeat" => "quiz in vm.quizzes"}
+        .quiz-show.panel.padder-v.item
+          %h1.quiz-title.h1.text-info.font-thin.h1
+            %a{:ui_sref => "user.topic.quiz({quizId: quiz.id, topicId: quiz.topic_id})"} {{ quiz.title }}
+          %p.text-muted.text-xs.quiz-score {{ quiz.passing_score }}

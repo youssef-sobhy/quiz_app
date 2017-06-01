@@ -1,12 +1,12 @@
 #app.app.ng-scope.app-header-fixed.app-aside-fixed{"ng-class" => "{'app-header-fixed':app.settings.headerFixed, 'app-aside-fixed':app.settings.asideFixed, 'app-aside-folded':app.settings.asideFolded, 'app-aside-dock':app.settings.asideDock, 'container':app.settings.container}", "ui-view" => ""}
   / uiView:
 .fade-in-right-big.smooth.ng-scope{"ui-view" => ""}
-  .container.w-xxl.w-auto-xs.ng-scope#login{"ng-controller" => "AuthController as auth", "ng-init" => "app.settings.container = false;"}
+  .container.w-xxl.w-auto-xs.ng-scope#login{"ng-controller" => "AuthController as auth"}
     %a.navbar-brand.block.m-t.ng-binding{:href => ""} Quizical
     .m-b-lg
       .wrapper.text-center{"ng-controller" => "AuthController as auth"}
         %strong Sign in to get in touch
-      %form.form-validation.ng-pristine.ng-valid-email.ng-invalid.ng-invalid-required{:name => "form" "ng-init" => "loginForm = {}", "ng-submit" => "auth.loginUser()"}
+      %form.form-validation.ng-pristine.ng-valid-email.ng-invalid.ng-invalid-required{:name => "form", "ng-init" => "loginForm = {}", "ng-submit" => "auth.loginUser()"}
         .text-danger.wrapper.text-center.ng-binding.ng-hide{"aria-hidden" => "true", "ng-show" => "authError"}
         .list-group.list-group-sm
           .list-group-item

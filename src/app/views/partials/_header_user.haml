@@ -1,0 +1,28 @@
+%nav.navbar.navbar-default
+  .container
+    / Brand and toggle get grouped for better mobile display
+    .navbar-header
+      %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand{"ui-sref" => "user.topics"}
+        %h1 Quizical
+    / Collect the nav links, forms, and other content for toggling
+    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+      %ul.nav.navbar-nav.navbar-right
+        %li.dropdown{:"uib-dropdown" => ""}
+          %a.dropdown-toggle.clear{"uib-dropdown-toggle" => "", :href => ""}
+            %span.thumb-sm.avatar.pull-right.m-t-n-sm.m-b-n-sm.m-l-sm
+              %img{:alt => "...", src: "/assets/images/avatar.jpg"}
+            %span.hidden-sm.hidden-md {{ current_user.name }}
+            %b.caret
+          / dropdown
+          %ul.dropdown-menu
+            %li
+              %a{"ui-sref": "dashboard.settings"}
+                %span Account Settings
+            %li.divider
+            %li{"ng-controller" => "AuthController as auth"}
+              %button{"ng-click" => "auth.logOutUser()", :type => "button"} Logout
