@@ -1,9 +1,10 @@
-.topics{"ng-controller" => "TopicsController as vm"}
-		.auth{"ng-controller" => "AuthController as auth"}
-  		%button{"ng-click" => "auth.logOutUser()", :type => "button"} Log out
-  .topic{"ng-repeat" => "topic in vm.topics"}
-    %h1
-      %a{"ui-sref" => "user.topic.quizzes({topicId: topic.id})"}
-        %img{:alt => "{{ topic.title }}", :src => "{{ topic.logo }}"}
-        %span {{ topic.title }}
-    %p {{ topic.description }}
+.container{"ng-controller" => "TopicsController as vm"}
+  .row.topics
+    .col-md-4.col-sm-6{"ng-repeat" => "topic in vm.topics"}
+      %section.topic-widget
+        .topic-logo>
+          %a{"ui-sref" => "user.topic.quizzes({topicId: topic.id})"}
+            %img{:alt => "", :src => "app/assets/images/ruby.png"}
+            / %img{:alt => "{{ topic.title }}", :src => "{{ topic.logo }}"}
+            %h1.topic-title {{ topic.title }} 
+

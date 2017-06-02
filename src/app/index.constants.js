@@ -2,7 +2,7 @@
 (function() {
   //angular.module('alMakinah').constant('moment', moment);
   angular
-  .module('alMakinah')
+  .module('quizical')
   .constant('ENV_VARS', {
     baseUrl: 'http://localhost:3000/',
     appName: 'quizApp'

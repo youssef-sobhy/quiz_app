@@ -1,18 +1,12 @@
-/ navbar header
 .navbar-header.bg-primary
   %button.pull-right.visible-xs.dk{"data-target" => ".navbar-collapse", "ui-toggle-class" => "show"}
     %i.glyphicon.glyphicon-cog
   %button.pull-right.visible-xs{"data-target" => ".app-aside", "ui-scroll-to" => "app", "ui-toggle-class" => "off-screen"}
     %i.glyphicon.glyphicon-align-justify
-  / brand
   %a.navbar-brand.text-lt{:href => "#/"}
     %img{:alt => ".", :src => "/assets/images/small-logo.png"}
     %span.hidden-folded.m-l-xs {{app.name}}
-  / / brand
-/ / navbar header
-/ navbar collapse
 .collapse.pos-rlt.navbar-collapse.box-shadow.bg-gray
-  <!-- buttons -->
   .nav.navbar-nav.hidden-xs
     %a.btn.navbar-btn.no-shadow{href: "", "uib-tooltip" => "Help Docs", "tooltip-placement" => "bottom"}
       %i.icon-question
@@ -20,7 +14,6 @@
     %a.btn.navbar-btn.no-shadow{href: "", "uib-tooltip" => "Get Support", "tooltip-placement" => "bottom"}
       %i.icon-support
       %span.visible-xs-inline Get Support
-  / nabar right
   %ul.nav.navbar-nav.navbar-right
     %li.dropdown{:"uib-dropdown" => ""}
       %a.dropdown-toggle{"uib-dropdown-toggle" => "", :href => "", "uib-tooltip": "Notifications", "tooltip-placement" => "bottom"}
@@ -28,7 +21,6 @@
         %span.visible-xs-inline Notifications
         %span.badge.badge-sm.up.bg-primary.pull-right-xs{ "ng-if":"current_user.unread_notifications_count > 0" }
           {{ current_user.unread_notifications_count }}
-      / dropdown
       #notifications-dropdown.dropdown-menu.w-xl
         .header-dropdown-panel.panel.panel-default
           .panel-heading
@@ -50,23 +42,3 @@
           .panel-footer.text-sm
             %a{ "ui-sref": "dashboard.notifications" }
               See all notifications
-
-
-    %li.dropdown{:"uib-dropdown" => ""}
-      %a.dropdown-toggle.clear{"uib-dropdown-toggle" => "", :href => ""}
-        %span.thumb-sm.avatar.pull-right.m-t-n-sm.m-b-n-sm.m-l-sm
-          %img{:alt => "...", src: "/assets/images/blue_moon.jpg"}
-        %span.hidden-sm.hidden-md {{ current_user.name }}
-        %b.caret
-      / dropdown
-      %ul.dropdown-menu
-        %li
-          %a{"ui-sref": "dashboard.settings"}
-            %span Account Settings
-        %li.divider
-        %li
-          %a{"ui-sref" => "logout"}
-            %span Logout
-      / / dropdown
-  / / navbar right
-/ / navbar collapse

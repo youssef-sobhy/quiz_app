@@ -1,7 +1,11 @@
-.topic{"ng-controller" => "TopicController as vm"}
-  %h1
-    %img{:alt => "{{ vm.topic.title }}", :src => "{{ vm.topic.logo['url'] }}"}
-    %span {{ vm.topic.title }}
-  %p {{ vm.topic.description }}
-
-  %ui-view
+.topic.bg-light.lter.b-b.wrapper-md{"ng-controller" => "TopicController as vm"}
+  .container
+    .row
+      .col-sm-12.col-xs-12
+        %h1.m-n.font-thin.h3.text-black
+          / %img{:alt => "{{ vm.topic.title }}", :src => "{{ vm.topic.logo['url'] }}"}
+          %img.topic-logo{:alt => "", :src => "app/assets/images/ruby.png"}
+          %span.topic-title {{ vm.topic.title }}
+        / %p.text-muted {{ vm.topic.description }}
+        
+%ui-view
