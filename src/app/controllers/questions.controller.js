@@ -23,7 +23,7 @@
       function () {
         toastr.error('Cannot retrieve questions', 'ERROR!');
       }
-      );
+    );
 
     vm.choices = [{}, {}, {}, {}];
 
@@ -43,7 +43,7 @@
         }
       };
 
-      QuestionsService.addQuestion(vm.questionData)
+      QuestionsService.addQuestion($stateParams.topicId, $stateParams.quizId, vm.questionData)
       .then(
         function (success) {
           $log.log(success.data);
@@ -61,7 +61,7 @@
         question: question
       };
 
-      QuestionsService.editQuestion(question.id, data)
+      QuestionsService.editQuestion($stateParams.topicId, $stateParams.quizId, question.id, data)
       .then(
         function () {
           toastr.success('Question successfully edited!');
@@ -73,7 +73,7 @@
     };
 
     vm.deleteQuestion = function (question) {
-      QuestionsService.deleteQuestion(question.id)
+      QuestionsService.deleteQuestion($stateParams.topicId, $stateParams.quizId, question.id)
       .then(
         function () {
           var index = vm.questions.indexOf(question);
