@@ -22,7 +22,7 @@
         templateUrl: 'app/views/user/sign_up.html'
       })
       .state('sign_in', {
-        url: '/sign_in',
+        url: '/',
         templateUrl: 'app/views/user/sign_in.html'
       })
       .state('user.topics', {

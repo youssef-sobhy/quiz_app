@@ -2,22 +2,22 @@
 (function() {
   angular.module("quizical")
   .factory('QuestionsService', function ($http, $stateParams, ENV_VARS) {
-    var baseUrl = ENV_VARS.baseUrl + 'topics/' + $stateParams.topicId + '/quizzes/' + $stateParams.quizId;
+    var baseUrl = ENV_VARS.baseUrl + 'topics/'
     var submitQuizUrl = ENV_VARS.baseUrl + 'user_answers.json'
     var submitScoreUrl = ENV_VARS.baseUrl + 'scores.json'
 
     return {
-      getQuestions: function () {
-        return $http.get(baseUrl + '/questions.json');
+      getQuestions: function (topicId, quizId) {
+        return $http.get(baseUrl + topicId + '/quizzes/' + quizId + '/questions.json');
       },
-      addQuestion: function (data) {
-        return $http.post(baseUrl + '/questions.json', data);
+      addQuestion: function (topicId, quizId, data) {
+        return $http.post(baseUrl + topicId + '/quizzes/' + quizId + '/questions.json', data);
       },
-      editQuestion: function (id, data) {
-        return $http.patch(baseUrl + '/questions/' + id + '.json', data);
+      editQuestion: function (topicId, quizId, id, data) {
+        return $http.patch(baseUrl + topicId + '/quizzes/' + quizId + '/questions/' + id + '.json', data);
       },
-      deleteQuestion: function (id) {
-        return $http.delete(baseUrl + '/questions/' + id + '.json');
+      deleteQuestion: function (topicId, quizId, id) {
+        return $http.delete(baseUrl + topicId + '/quizzes/' + quizId + '/questions/' + id + '.json');
       },
       submitQuiz: function (data) {
         return $http.post(submitQuizUrl, data);
